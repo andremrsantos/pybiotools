@@ -1,0 +1,173 @@
+#! /usr/bin/env python
+from _ctypes import ArgumentError
+from collections import deque
+from fractions import gcd
+import fractions
+import itertools
+import numpy
+from lib.interval import Interval
+from lib.scripts.base_script import BaseScript
+from lib.scripts.split_by_genotype import SplitByGenotypeWalker
+from lib.vcf_walker import VCFWalker
+
+__author__ = 'andresantos'
+
+class SelectiveSweep (BaseScript):
+    def _build_parser(self, parser):
+        parser.add_option('-w', '--window', dest='window',
+                          help='Sliding window size',
+                          default=10000)
+        parser.add_option('-s', '--step', dest='step',
+                          help='Sliding window step size',
+                          default=1000)
+        parser.add_option('-k', '--kvcf', dest='kvcf',
+                          help='1000 genomes vcf folder')
+
+    def _build(self):
+        self.__ipt = self._get_option('input')
+        if self.__ipt is None:
+            self._parser().error("You must inform a list of mutations "
+                                 "and regions to evaluate")
+        kvcf = self._get_option('kvcf')
+        if kvcf is None:
+            self._parser().error("You must inform the 1000 genomes VCF folder")
+        self.__vcf = "%s/ALL.chr%s.*.vcf.gz" % (kvcf, '%d')
+
+        self.__window = int(self._get_option('window'))
+        self.__step = int(self._get_option('step'))
+
+        self.__bucks = gcd(self.__window, self.__step)
+
+    def _run(self):
+        for line in open(self.__ipt, 'r'):
+            (chr, pos, rs, start, stop) = line.lstrip().split()
+            mutation = Interval(chr, start)
+            split = SplitByGenotypeWalker(self.__vcf % int(chr), mutation,
+                                          rsid=rs)
+            split.walk()
+
+
+class NucleotideDiversityWalker(VCFWalker):
+    def _build_args(self, args):
+        # SAMPLING ARGS
+        self.__samples = dict(args['groups'])
+        self.__groups  = self.__samples.keys
+        self.__n = dict()
+        for i in self.__groups:
+            self.__n[i] = len(args[i])
+
+        # WINDOW ARGS
+        self.__stacks = deque()
+        self.__at = self._interval().start()
+        self.__window = int(args['window'])
+        self.__step = int(args['step'])
+        self.__bucket = fractions.gcd(self.__window, self.__step)
+        self.__bck_window = self.__window/self.__bucket
+        self.__bck_step = self.__step/self.__bucket
+
+    def _reduce_init(self):
+        return 0
+
+    def _filter(self, record):
+        return not record.is_snp()
+
+    def _map(self, record):
+        for g in self.__groups:
+            j = 0
+            n = self.__n[g] * 2
+            for sm in self.__samples[g]:
+                call = record.genotype(sm)
+                j += call.gt_type
+            dv = 2 * j * (n-j) / (n * (n-1))
+            if j > 0 and j < n:
+                self.__append(record.POS, g, dv)
+
+    def __append(self, position, group, diversity):
+        self.__move_to(position)
+        self.__stacks[-1] += (group, diversity)
+
+    def __move_to(self, position):
+        while self.__is_next_bucket(position):
+            self.__next_bucket()
+            if self.__is_next_window():
+                self.__next_window()
+
+    def __is_next_bucket(self, position):
+        return self.__at + self.__bucket <= position
+
+    def __next_bucket(self):
+        interval = self._interval().build(self.__at, self.__at + self.__bucket)
+        self.__stacks.append(GroupWindow(interval, self.__groups))
+
+    def __is_next_window(self):
+        return len(self.__stacks) >= self.__bck_window
+
+    def __next_window(self):
+        print sum(itertools.islice(self.__stacks, self.__bck_window))
+        for _ in range(self.__bck_step):
+            self.__stacks.popleft()
+
+    def _reduce(self, acc, cur):
+        return acc + cur
+
+    def _conclude(self, acc):
+        self.__move_to(self._interval().stop())
+        print "A total of %d SNPs were evaluated" % acc
+
+class GroupWindow (object):
+    def __init__(self, interval, groups, diversity=None, nsnp=None):
+        if isinstance(interval, Interval):
+            self.__interval = interval
+        else:
+            self.__interval = Interval.factory(interval)
+
+        self.__groups = groups
+        if diversity is None:
+            self.__diversity = dict.fromkeys(groups, 0)
+        else:
+            self.__diversity = diversity
+
+        if nsnp is None:
+            self.__nsnp = dict.fromkeys(groups, 0)
+        else:
+            self.__nsnp = nsnp
+
+    def groups(self):
+        return self.__groups
+
+    def nsnp(self, group):
+        return self.__nsnp[group]
+
+    def diversity(self, group):
+        return self.__diversity[group]
+
+    def norm_diversity(self, group):
+        return self.diversity(group)/self.interval().length()
+
+    def interval(self):
+        return self.__interval
+
+    def __radd__(self, other):
+        if isinstance(other, tuple):
+            group, diversity = other
+            self.__nsnp[group] += 1
+            self.__diversity[group] += diversity
+            return self
+        elif isinstance(other, GroupWindow):
+            interval  = self.interval() + other.interval()
+            diversity = dict.fromkeys(self.groups(), 0)
+            nsnp = dict.fromkeys(self.groups(), 0)
+            for g in self.groups():
+                diversity[g] = self.diversity(g) + other.diversity(g)
+                nsnp[g] = self.nsnp(g) + other.nsnp(g)
+
+            return GroupWindow(interval, self.groups(), diversity, nsnp)
+        else:
+            raise ArgumentError()
+
+    def __str__(self):
+        it = self.interval()
+        str = "%s\t%d\t%d\t" % (it.contig(), it.start(), it.stop())
+        for g in self.groups():
+            str += "%s\t%d\t%5.5f\t" % (g, self.nsnp(g), self.norm_diversity(g))
+        return str

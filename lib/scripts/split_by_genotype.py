@@ -43,11 +43,13 @@ class SplitByGenotypeWalker(VCFWalker):
         return [x.sample for x in self.record().get_unknowns()]
 
     def alleles(self):
+        if self.record() is None:
+            return ''
         return [x.__str__() for x in self.record().alleles]
 
 class SplitByGenotype(BiotoolScript):
-    def _build_parser(self):
-        parser = OptionParser("Usage: %prog SplitByGenotype [options]")
+    def _build_parser(self, parser):
+        parser.set_description("Usage: %prog SplitByGenotype [options]")
         parser.add_option('-l','--interval', dest='interval',
                           help='Mutation genomic interval')
         parser.add_option('-c','--contig', dest='contig',
@@ -67,8 +69,8 @@ class SplitByGenotype(BiotoolScript):
         interval = self._get_option('interval')
         chr = self._get_option('contig')
         pos = self._get_option('position')
-        rsid= self._get_option('rsid')
-        input= self._get_option('input')
+        rsid = self._get_option('rsid')
+        input = self._get_option('input')
         ref_build = self._get_option('reference')
 
         ## Update genome reference build data if necessary
@@ -84,6 +86,9 @@ class SplitByGenotype(BiotoolScript):
             self._parser().error("Must inform either the mutation by "
                                  "the genomic interval (-l) or "
                                  "the contig (-c) and position (-p)")
+
+        rsid = rsid if rsid=='.' else None
+
         ## Init processing walker
         if input is not None:
             self.__walker = SplitByGenotypeWalker(input, self.__interval,

@@ -46,6 +46,9 @@ class Interval(object):
                 self.__stop = stop if stop < max else max
         self.__check_position()
 
+    def build(self, start, stop=None):
+        return Interval(self.contig(), start, stop)
+
     def contig(self):
         return self.__contig
 

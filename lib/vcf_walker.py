@@ -45,6 +45,9 @@ class VCFWalker(object):
         # close the result processing
         pass
 
+    def _interval(self):
+        return self.__interval
+
     def progress(self):
         current = self.__iterator.POS
         max = self.__interval.stop()

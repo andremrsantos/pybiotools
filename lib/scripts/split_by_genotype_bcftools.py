@@ -8,8 +8,8 @@ from lib.interval import Interval
 
 
 class SplitByGenotypeBcftools(BiotoolScript):
-    def _build_parser(self):
-        parser = OptionParser("Usage: %prog SplitByGenotypeBcftools [options]")
+    def _build_parser(self, parser):
+        parser.set_description("Usage: %prog SplitByGenotypeBcftools [options]")
         parser.add_option('-l','--interval', dest='interval',
                           help='Mutation genomic interval')
         parser.add_option('-c','--contig', dest='contig',
@@ -54,7 +54,7 @@ class SplitByGenotypeBcftools(BiotoolScript):
                                  "the genomic interval (-l) or "
                                  "the contig (-c) and position (-p)")
         filter = ''
-        if rsid is not None:
+        if rsid is not None or rsid=='.':
             filter = " | grep -w '%s'" % rsid
         ## Init processing walker
         if input is not None:
@@ -71,21 +71,22 @@ class SplitByGenotypeBcftools(BiotoolScript):
     def run(self):
         ## Extract by BCFTOOLS samples genotype
         subprocess.call(self.__script, shell=True)
-        groups = {'00': [], '01': [], '11': [], '.': []}
+        self.__groups = {'00': [], '01': [], '11': [], '.': []}
         for line in open(self.__output, 'r'):
             (sm, gt) = re.sub(r"[/\|]", '', line.lstrip()).split()[1:]
             if gt == '00':
-                groups['00'].append(sm)
+                self.__groups['00'].append(sm)
             elif gt == '01' or gt == '10':
-                groups['01'].append(sm)
+                self.__groups['01'].append(sm)
             elif gt == '11':
-                groups['11'].append(sm)
+                self.__groups['11'].append(sm)
             elif gt == '..' or gt == '.':
-                groups['.'].append(sm)
+                self.__groups['.'].append(sm)
             else:
                 warnings.warn("Unrecognized genotype '%s' for sample %s" %
                               (gt, sm))
         subprocess.call("rm %s" % self.__output, shell=True)
+        self.__print_report()
 
     def __print_report(self):
         print "## Split by Genotype"

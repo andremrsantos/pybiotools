@@ -7,11 +7,12 @@ import traceback
 from lib.biotoolscript import BiotoolScript
 from sys import argv
 import lib.scripts
+from lib.scripts.base_script import BaseScript
 
 
 class DefaultScript(BiotoolScript):
-    def _build_parser(self):
-        parser = OptionParser("Usage: %prog [program] [options]")
+    def _build_parser(self, parser):
+        parser.set_description("Usage: %prog [program] [options]")
         return parser
 
     def _build(self):
@@ -23,7 +24,7 @@ class DefaultScript(BiotoolScript):
         return "Default script for redirecting call for others scripts"
 
     def run(self):
-        scripts = BiotoolScript.__subclasses__()
+        scripts = self.__scripts()
         script = None
         for i in scripts:
             if i.__name__ == self._get_arg(0):
@@ -36,14 +37,24 @@ class DefaultScript(BiotoolScript):
 
     def __unknown_script(self):
         str = ""
-        for script in BiotoolScript.__subclasses__():
-            if script != DefaultScript:
+        for script in self.__scripts():
+            if script != DefaultScript and script != BaseScript:
                 str += "%20s - %s\n" % (script.__name__,
                                         script.description())
 
         self._parser().error("You must choose one script to run from the "
                              "following:\n%s" % str)
 
+    def __scripts(self):
+        scripts = set()
+        work = [BiotoolScript]
+        while work:
+            parent = work.pop()
+            for child in parent.__subclasses__():
+                if child not in scripts:
+                    scripts.add(child)
+                    work.append(child)
+        return sorted(scripts, key=(lambda x: x.__name__))
 
 def main():
     script = DefaultScript(argv[1:2], path.dirname(path.abspath(__file__)))
