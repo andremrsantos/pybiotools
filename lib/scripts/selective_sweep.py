@@ -53,7 +53,7 @@ class SelectiveSweep (BaseScript):
                 'HR' : split.get_hom_refs(),
                 'HM' : split.get_hom_alts()
             }
-            sys.stdout = open("%s_%s_%s.sw" % (rs, chr, pos), 'r')
+            sys.stdout = open("%s_%s_%s.sw" % (rs, chr, pos), 'w')
             dv = NucleotideDiversityWalker(self.__vcf % int(chr),
                                            window,
                                            groups=groups,
