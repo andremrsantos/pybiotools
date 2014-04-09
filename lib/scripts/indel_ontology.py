@@ -88,7 +88,6 @@ class IndelOntology(DBScript):
                             ontology[key].n >= self.base_ontology[key].n:
                 self.pvalue[key] += 1.0/self.__simulate
 
-    @profile
     def simulate(self):
         sample = self.__sample()
         ontology = self.__query_ontology(sample, self.__group)

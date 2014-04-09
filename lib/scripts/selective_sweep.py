@@ -14,6 +14,7 @@ __author__ = 'andresantos'
 
 class SelectiveSweep (BaseScript):
     def _build_parser(self, parser):
+        super(SelectiveSweep, self)._build_parser(parser)
         parser.add_option('-w', '--window', dest='window',
                           help='Sliding window size',
                           default=10000)
@@ -24,6 +25,7 @@ class SelectiveSweep (BaseScript):
                           help='1000 genomes vcf folder')
 
     def _build(self):
+        super(SelectiveSweep, self)._build()
         self.__ipt = self._get_option('input')
         if self.__ipt is None:
             self._parser().error("You must inform a list of mutations "
@@ -31,7 +33,7 @@ class SelectiveSweep (BaseScript):
         kvcf = self._get_option('kvcf')
         if kvcf is None:
             self._parser().error("You must inform the 1000 genomes VCF folder")
-        self.__vcf = "%s/ALL.chr%s.*.vcf.gz" % (kvcf, '%d')
+        self.__vcf = "%s/ALL.chr%s.phase1_release_v3.20101123.snps_indels_svs.genotypes.vcf.gz" % (kvcf, '%d')
 
         self.__window = int(self._get_option('window'))
         self.__step = int(self._get_option('step'))
@@ -53,8 +55,8 @@ class SelectiveSweep (BaseScript):
             }
             dv = NucleotideDiversityWalker(self.__vcf % int(chr),
                                            window,
-                                           groups=groups)
-            sys.stdout = open('%s_%s_%s.sw' % (rs, chr, pos), 'w')
+                                           groups=groups,
+                                           window=self.__window, step=self.__step)
             print "## PyBiotools - SelectiveSweep"
             print "## HR : %d" % len(groups['HR'])
             print "## HM : %d" % len(groups['HM'])
@@ -62,26 +64,26 @@ class SelectiveSweep (BaseScript):
 
 class NucleotideDiversityWalker(VCFWalker):
     def _build_args(self, args):
-        self.__total
+        self.__total = 0
         # SAMPLING ARGS
         self.__samples = dict(args['groups'])
-        self.__groups  = self.__samples.keys
+        self.__groups  = self.__samples.keys()
         self.__n = dict()
         for i in self.__groups:
-            self.__n[i] = len(args[i])
+            self.__n[i] = len(self.__samples[i])
 
         # WINDOW ARGS
-        self.__stacks = deque()
         self.__at = self._interval().start()
         self.__window = int(args['window'])
         self.__step = int(args['step'])
         self.__bucket = fractions.gcd(self.__window, self.__step)
         self.__bck_window = self.__window/self.__bucket
         self.__bck_step = self.__step/self.__bucket
-
+        self.__stacks = deque()
+	self.__next_bucket()
         # Output
-        if args["output"] is None:
-            self.__output = open('%s_%s.sw' % (self._interval().contig(),
+        if not args.has_key("output"):
+            self.__output = open('%s_%s_%s.sw' % (self._interval().contig(),
                                                self._interval().start(),
                                                self._interval().stop()), 'w')
         else:
@@ -91,7 +93,7 @@ class NucleotideDiversityWalker(VCFWalker):
         return 0
 
     def _filter(self, record):
-        return not record.is_snp()
+        return not record.is_snp
 
     def _map(self, record):
         for g in self.__groups:
@@ -107,7 +109,7 @@ class NucleotideDiversityWalker(VCFWalker):
 
     def __append(self, position, group, diversity):
         self.__move_to(position)
-        self.__stacks[-1] += (group, diversity)
+        self.__stacks[-1].append_snp(group, diversity)
 
     def __move_to(self, position):
         while self.__is_next_bucket(position):
@@ -175,7 +177,12 @@ class GroupWindow (object):
     def interval(self):
         return self.__interval
 
-    def __radd__(self, other):
+    def append_snp(self, group, diversity):
+        self.__nsnp[group] += 1
+        self.__diversity[group] += diversity
+        return self
+	
+    def __add__(self, other):
         if isinstance(other, tuple):
             group, diversity = other
             self.__nsnp[group] += 1
@@ -191,7 +198,10 @@ class GroupWindow (object):
 
             return GroupWindow(interval, self.groups(), diversity, nsnp)
         else:
-            raise ArgumentError()
+            return self
+
+    def __radd__(self, other):
+        return self + other
 
     def __str__(self):
         it = self.interval()
