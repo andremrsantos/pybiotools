@@ -124,6 +124,7 @@ class NucleotideDiversityWalker(VCFWalker):
         return self.__at + self.__bucket <= position
 
     def __next_bucket(self):
+        self.__at += self.__bucket
         interval = self._interval().build(self.__at, self.__at + self.__bucket)
         self.__stacks.append(GroupWindow(interval, self.__groups))
 
@@ -133,7 +134,7 @@ class NucleotideDiversityWalker(VCFWalker):
     def __next_window(self):
         acc = self.__stacks[0]
         for i in itertools.islice(self.__stacks, 1, self.__bck_window):
-            acc += i    
+            acc.append(i)   
         self.__output.write("%s\n" % acc)
         for _ in range(self.__bck_step):
             self.__stacks.popleft()
@@ -187,18 +188,15 @@ class GroupWindow (object):
         self.__diversity[group] += diversity
         return self
 	
-    def __add__(self, other):
-        if isinstance(other, GroupWindow):
-            interval  = self.interval() + other.interval()
-            diversity = dict.fromkeys(self.groups(), 0)
-            nsnp = dict.fromkeys(self.groups(), 0)
-            for g in self.groups():
-                diversity[g] = self.diversity(g) + other.diversity(g)
-                nsnp[g] = self.nsnp(g) + other.nsnp(g)
-            return GroupWindow(interval, self.groups(), diversity, nsnp)
-        else:
-            return self
-
+    def append(self, other):
+        interval  = self.interval() + other.interval()
+        diversity = dict.fromkeys(self.groups(), 0)
+        nsnp = dict.fromkeys(self.groups(), 0)
+        for g in self.groups():
+            diversity[g] = self.diversity(g) + other.diversity(g)
+            nsnp[g] = self.nsnp(g) + other.nsnp(g)
+        return GroupWindow(interval, self.groups(), diversity, nsnp)
+    
     def __str__(self):
         it = self.interval()
         str = "%s\t%d\t%d\t" % (it.contig(), it.start(), it.stop())
