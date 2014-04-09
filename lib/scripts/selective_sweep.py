@@ -53,16 +53,18 @@ class SelectiveSweep (BaseScript):
                 'HR' : split.get_hom_refs(),
                 'HM' : split.get_hom_alts()
             }
-            sys.stdout = open("%s_%s_%s.sw" % (rs, chr, pos), 'w')
+
+            mtout = open("%s_%s_%s.sw" % (rs, chr, pos), 'w')
             dv = NucleotideDiversityWalker(self.__vcf % int(chr),
                                            window,
                                            groups=groups,
                                            window=self.__window, 
                                            step=self.__step,
-                                           output=sys.stdout)
-            print "## PyBiotools - SelectiveSweep"
-            print "## HR : %d" % len(groups['HR'])
-            print "## HM : %d" % len(groups['HM'])
+                                           output=mtout)
+            mtout.write("## PyBiotools - SelectiveSweep\n")
+            mtout.write("## HR : %d\n" % len(groups['HR']))
+            mtout.write("## HM : %d\n" % len(groups['HM']))
+            print "Processing %s - %s" %(mutation, rs)
             dv.walk()
 
 class NucleotideDiversityWalker(VCFWalker):
@@ -100,7 +102,7 @@ class NucleotideDiversityWalker(VCFWalker):
 
     def _map(self, record):
         for g in self.__groups:
-            j = 0
+            j = 0.0
             n = self.__n[g] * 2
             for sm in self.__samples[g]:
                 call = record.genotype(sm)
@@ -134,7 +136,9 @@ class NucleotideDiversityWalker(VCFWalker):
     def __next_window(self):
         acc = self.__stacks[0]
         for i in itertools.islice(self.__stacks, 1, self.__bck_window):
-            acc.append(i)   
+            #print acc.interval()
+            #print i.interval()
+            acc = acc.append(i)   
         self.__output.write("%s\n" % acc)
         for _ in range(self.__bck_step):
             self.__stacks.popleft()
@@ -201,5 +205,5 @@ class GroupWindow (object):
         it = self.interval()
         str = "%s\t%d\t%d\t" % (it.contig(), it.start(), it.stop())
         for g in self.groups():
-            str += "%s\t%d\t%5.5f\t" % (g, self.nsnp(g), self.norm_diversity(g))
+            str += "%s\t%d\t%.5e\t" % (g, self.nsnp(g), self.norm_diversity(g))
         return str

@@ -66,8 +66,12 @@ class Interval(object):
                other.start() <= self.start() and other.stop() <= self.stop()
 
     def intersect(self, other):
+        #print self.same_contig(other)
+        #print (other.start() >= self.start() and other.start() <= self.stop())
+        #print (other.stop() >= self.start() and other.stop() <= self.stop())
         return self.same_contig(other) and \
-               (other.start() <= self.start() or other.stop() <= self.stop())
+               ((other.start() >= self.start() and other.start() <= self.stop()) or \
+               (other.stop() >= self.start() and other.stop() <= self.stop()))
 
     def before(self, other):
         return self.same_contig(other) and other.start < self.start()
@@ -93,9 +97,11 @@ class Interval(object):
             raise AttributeError("The interval must have stop greater than start")
 
     def __add__(self, other):
+        #print self
+        #print other
         if not self.intersect(other):
             raise AttributeError("The intervals are not addable")
-        elif self.before(other):
+        elif self.after(other):
             return Interval(self.contig(), self.start(), other.stop())
         else:
             return Interval(self.contig(), other.start(), self.stop())
