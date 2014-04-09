@@ -53,10 +53,13 @@ class SelectiveSweep (BaseScript):
                 'HR' : split.get_hom_refs(),
                 'HM' : split.get_hom_alts()
             }
+            sys.stdout = open("%s_%s_%s.sw" % (rs, chr, pos), 'r')
             dv = NucleotideDiversityWalker(self.__vcf % int(chr),
                                            window,
                                            groups=groups,
-                                           window=self.__window, step=self.__step)
+                                           window=self.__window, 
+                                           step=self.__step,
+                                           output=sys.stdout)
             print "## PyBiotools - SelectiveSweep"
             print "## HR : %d" % len(groups['HR'])
             print "## HM : %d" % len(groups['HM'])
@@ -128,8 +131,10 @@ class NucleotideDiversityWalker(VCFWalker):
         return len(self.__stacks) >= self.__bck_window
 
     def __next_window(self):
-        self.__output.write("%s\n" % sum(
-            itertools.islice(self.__stacks, self.__bck_window)))
+        acc = self.__stacks[0]
+        for i in itertools.islice(self.__stacks, 1, self.__bck_window):
+            acc += i    
+        self.__output.write("%s\n" % acc)
         for _ in range(self.__bck_step):
             self.__stacks.popleft()
 
@@ -183,25 +188,16 @@ class GroupWindow (object):
         return self
 	
     def __add__(self, other):
-        if isinstance(other, tuple):
-            group, diversity = other
-            self.__nsnp[group] += 1
-            self.__diversity[group] += diversity
-            return self
-        elif isinstance(other, GroupWindow):
+        if isinstance(other, GroupWindow):
             interval  = self.interval() + other.interval()
             diversity = dict.fromkeys(self.groups(), 0)
             nsnp = dict.fromkeys(self.groups(), 0)
             for g in self.groups():
                 diversity[g] = self.diversity(g) + other.diversity(g)
                 nsnp[g] = self.nsnp(g) + other.nsnp(g)
-
             return GroupWindow(interval, self.groups(), diversity, nsnp)
         else:
             return self
-
-    def __radd__(self, other):
-        return self + other
 
     def __str__(self):
         it = self.interval()
