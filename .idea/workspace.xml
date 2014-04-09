@@ -26,7 +26,7 @@
       <file leaf-file-name="selective_sweep.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="22" selection-start="2848" selection-end="2848" vertical-scroll-proportion="-2.1558218" vertical-offset="2798" max-vertical-offset="3382">
+            <state line="162" column="21" selection-start="5598" selection-end="5598" vertical-scroll-proportion="5.270548" vertical-offset="0" max-vertical-offset="3914">
               <folding>
                 <element signature="e#23#56#0" expanded="true" />
               </folding>
@@ -34,10 +34,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vcf_walker.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/vcf_walker.py">
+      <file leaf-file-name="split_by_genotype.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="30" selection-start="1354" selection-end="1354" vertical-scroll-proportion="0.0" vertical-offset="499" max-vertical-offset="1159">
+            <state line="32" column="27" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="2413">
               <folding />
             </state>
           </provider>
@@ -148,24 +148,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pybiotools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pybiotools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simulation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -344,7 +326,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="640" y="22" width="640" height="717" extended-state="6" />
+    <frame x="640" y="22" width="640" height="717" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -512,13 +494,6 @@
         <state line="32" column="31" selection-start="842" selection-end="842" vertical-scroll-proportion="0.6177924" vertical-offset="100" max-vertical-offset="1311" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="28" selection-start="356" selection-end="656" vertical-scroll-proportion="0.0" vertical-offset="228" max-vertical-offset="2413">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/interval.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="29" selection-start="1519" selection-end="1519" vertical-scroll-proportion="0.0" vertical-offset="651" max-vertical-offset="2356">
@@ -533,9 +508,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="27" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="2413">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="22" selection-start="2848" selection-end="2848" vertical-scroll-proportion="-2.1558218" vertical-offset="2798" max-vertical-offset="3382">
+        <state line="162" column="21" selection-start="5598" selection-end="5598" vertical-scroll-proportion="5.270548" vertical-offset="0" max-vertical-offset="3914">
           <folding>
             <element signature="e#23#56#0" expanded="true" />
           </folding>

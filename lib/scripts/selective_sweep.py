@@ -4,7 +4,7 @@ from collections import deque
 from fractions import gcd
 import fractions
 import itertools
-import numpy
+import sys
 from lib.interval import Interval
 from lib.scripts.base_script import BaseScript
 from lib.scripts.split_by_genotype import SplitByGenotypeWalker
@@ -41,14 +41,28 @@ class SelectiveSweep (BaseScript):
     def _run(self):
         for line in open(self.__ipt, 'r'):
             (chr, pos, rs, start, stop) = line.lstrip().split()
-            mutation = Interval(chr, start)
-            split = SplitByGenotypeWalker(self.__vcf % int(chr), mutation,
+            mutation = Interval(chr, pos)
+            split = SplitByGenotypeWalker(self.__vcf % int(chr),
+                                          mutation,
                                           rsid=rs)
             split.walk()
-
+            window = Interval(chr, start, stop)
+            groups = {
+                'HR' : split.get_hom_refs(),
+                'HM' : split.get_hom_alts()
+            }
+            dv = NucleotideDiversityWalker(self.__vcf % int(chr),
+                                           window,
+                                           groups=groups)
+            sys.stdout = open('%s_%s_%s.sw' % (rs, chr, pos), 'w')
+            print "## PyBiotools - SelectiveSweep"
+            print "## HR : %d" % len(groups['HR'])
+            print "## HM : %d" % len(groups['HM'])
+            dv.walk()
 
 class NucleotideDiversityWalker(VCFWalker):
     def _build_args(self, args):
+        self.__total
         # SAMPLING ARGS
         self.__samples = dict(args['groups'])
         self.__groups  = self.__samples.keys
@@ -64,6 +78,14 @@ class NucleotideDiversityWalker(VCFWalker):
         self.__bucket = fractions.gcd(self.__window, self.__step)
         self.__bck_window = self.__window/self.__bucket
         self.__bck_step = self.__step/self.__bucket
+
+        # Output
+        if args["output"] is None:
+            self.__output = open('%s_%s.sw' % (self._interval().contig(),
+                                               self._interval().start(),
+                                               self._interval().stop()), 'w')
+        else:
+            self.__output = args["output"]
 
     def _reduce_init(self):
         return 0
@@ -81,6 +103,7 @@ class NucleotideDiversityWalker(VCFWalker):
             dv = 2 * j * (n-j) / (n * (n-1))
             if j > 0 and j < n:
                 self.__append(record.POS, g, dv)
+        return 1
 
     def __append(self, position, group, diversity):
         self.__move_to(position)
@@ -103,7 +126,8 @@ class NucleotideDiversityWalker(VCFWalker):
         return len(self.__stacks) >= self.__bck_window
 
     def __next_window(self):
-        print sum(itertools.islice(self.__stacks, self.__bck_window))
+        self.__output.write("%s\n" % sum(
+            itertools.islice(self.__stacks, self.__bck_window)))
         for _ in range(self.__bck_step):
             self.__stacks.popleft()
 
@@ -112,7 +136,11 @@ class NucleotideDiversityWalker(VCFWalker):
 
     def _conclude(self, acc):
         self.__move_to(self._interval().stop())
-        print "A total of %d SNPs were evaluated" % acc
+        self.__total = acc
+
+    def evaluated(self):
+        return self.__total
+
 
 class GroupWindow (object):
     def __init__(self, interval, groups, diversity=None, nsnp=None):
