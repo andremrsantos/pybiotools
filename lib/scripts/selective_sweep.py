@@ -44,6 +44,7 @@ class SelectiveSweep (BaseScript):
         for line in open(self.__ipt, 'r'):
             (chr, pos, rs, start, stop) = line.lstrip().split()
             mutation = Interval(chr, pos)
+            rs = rs if rs != '.' else None
             split = SplitByGenotypeWalker(self.__vcf % int(chr),
                                           mutation,
                                           rsid=rs)
