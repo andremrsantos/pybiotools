@@ -66,7 +66,10 @@ class SelectiveSweep (BaseScript):
             mtout.write("## HR : %d\n" % len(groups['HR']))
             mtout.write("## HM : %d\n" % len(groups['HM']))
             print "Processing %s - %s" %(mutation, rs)
-            dv.walk()
+            if len(groups['HR']) <= 1  or len(groups['HM']) <= 1:
+                mtout.write("## The groups must have at least 2 members\n")
+            else:
+                dv.walk()
 
 class NucleotideDiversityWalker(VCFWalker):
     def _build_args(self, args):
