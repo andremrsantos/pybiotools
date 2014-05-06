@@ -152,6 +152,7 @@ class NucleotideDiversityWalker(VCFWalker):
 
     def _conclude(self, acc):
         self.__move_to(self._interval().stop())
+        self.__next_window()
         self.__total = acc
 
     def evaluated(self):
