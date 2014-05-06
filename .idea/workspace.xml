@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="selective_sweep.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="selective_sweep.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="27" selection-start="3564" selection-end="3564" vertical-scroll-proportion="0.2928082" vertical-offset="1634" max-vertical-offset="3914">
+            <state line="142" column="31" selection-start="5469" selection-end="5469" vertical-scroll-proportion="0.0" vertical-offset="3024" max-vertical-offset="4180">
               <folding>
                 <element signature="e#23#56#0" expanded="true" />
               </folding>
@@ -34,19 +34,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="split_by_genotype.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype.py">
+      <file leaf-file-name="simulate_sweep.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="27" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="2413">
-              <folding />
+            <state line="92" column="24" selection-start="3752" selection-end="3752" vertical-scroll-proportion="0.0" vertical-offset="1352" max-vertical-offset="2546">
+              <folding>
+                <element signature="e#23#37#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="interval.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/interval.py">
+      <file leaf-file-name="__init__.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/scripts/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="29" selection-start="1519" selection-end="1519" vertical-scroll-proportion="0.0" vertical-offset="651" max-vertical-offset="2356">
+            <state line="9" column="0" selection-start="213" selection-end="213" vertical-scroll-proportion="0.25110132" vertical-offset="0" max-vertical-offset="681">
+              <folding>
+                <element signature="e#52#83#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db_script.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/scripts/db_script.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="37" selection-start="1728" selection-end="1736" vertical-scroll-proportion="0.0" vertical-offset="516" max-vertical-offset="1197">
               <folding />
             </state>
           </provider>
@@ -75,7 +88,6 @@
         <option value="$PROJECT_DIR$/lib/scripts/split_by_genotype.py" />
         <option value="$PROJECT_DIR$/lib/biotoolscript.py" />
         <option value="$PROJECT_DIR$/lib/scripts/base_script.py" />
-        <option value="$PROJECT_DIR$/lib/scripts/__init__.py" />
         <option value="$PROJECT_DIR$/pybiotools.py" />
         <option value="$PROJECT_DIR$/lib/simulation/bootstrap.py" />
         <option value="$PROJECT_DIR$/lib/scripts/db_script.py" />
@@ -83,14 +95,15 @@
         <option value="$PROJECT_DIR$/lib/vcf_walker.py" />
         <option value="$PROJECT_DIR$/lib/interval.py" />
         <option value="$PROJECT_DIR$/lib/scripts/selective_sweep.py" />
+        <option value="$PROJECT_DIR$/lib/scripts/simulate_sweep.py" />
+        <option value="$PROJECT_DIR$/lib/scripts/__init__.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="640" />
     <option name="y" value="22" />
-    <option name="width" value="640" />
-    <option name="height" value="717" />
+    <option name="width" value="1276" />
+    <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -118,7 +131,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -171,6 +183,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -317,6 +330,23 @@
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="ba1f9c18-7bba-4df6-8ef8-45b5690ae3c8" name="Default" comment="" />
@@ -326,14 +356,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="640" y="22" width="640" height="717" extended-state="0" />
+    <frame x="0" y="22" width="1276" height="778" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36995155" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15595612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -341,11 +371,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -362,9 +392,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.309375" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -386,6 +416,29 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="27" selection-start="3564" selection-end="3564" vertical-scroll-proportion="0.0" vertical-offset="1634" max-vertical-offset="3914">
+          <folding>
+            <element signature="e#23#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="27" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0" vertical-offset="608" max-vertical-offset="2413">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/interval.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="29" selection-start="1519" selection-end="1519" vertical-scroll-proportion="0.0" vertical-offset="931" max-vertical-offset="2394">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="93" column="56" selection-start="3043" selection-end="3043" vertical-scroll-proportion="0.0" vertical-offset="1691" max-vertical-offset="2204">
@@ -464,11 +517,6 @@
         <state line="7" column="36" selection-start="176" selection-end="176" vertical-scroll-proportion="0.21911038" vertical-offset="0" max-vertical-offset="607" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="28" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="247" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/biotoolscript.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="68" selection-start="779" selection-end="779" vertical-scroll-proportion="0.7512356" vertical-offset="0" max-vertical-offset="1064" />
@@ -477,11 +525,6 @@
     <entry file="file://$PROJECT_DIR$/lib/scripts/indel_ontology.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="99" column="37" selection-start="3970" selection-end="3970" vertical-scroll-proportion="0.6746575" vertical-offset="1487" max-vertical-offset="2185" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/db_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="40" selection-start="1913" selection-end="1913" vertical-scroll-proportion="0.78253704" vertical-offset="475" max-vertical-offset="1254" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/simulation/bootstrap.py">
@@ -501,6 +544,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/interval.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="27" selection-start="1643" selection-end="1643" vertical-scroll-proportion="-0.05757576" vertical-offset="1045" max-vertical-offset="2489">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="27" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="2413">
@@ -508,18 +558,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/interval.py">
+    <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="29" selection-start="1519" selection-end="1519" vertical-scroll-proportion="0.0" vertical-offset="651" max-vertical-offset="2356">
+        <state line="142" column="31" selection-start="5469" selection-end="5469" vertical-scroll-proportion="0.0" vertical-offset="3024" max-vertical-offset="4180">
+          <folding>
+            <element signature="e#23#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/scripts/db_script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="37" selection-start="1728" selection-end="1736" vertical-scroll-proportion="0.0" vertical-offset="516" max-vertical-offset="1197">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
+    <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="27" selection-start="3564" selection-end="3564" vertical-scroll-proportion="0.2928082" vertical-offset="1634" max-vertical-offset="3914">
+        <state line="92" column="24" selection-start="3752" selection-end="3752" vertical-scroll-proportion="0.0" vertical-offset="1352" max-vertical-offset="2546">
           <folding>
-            <element signature="e#23#56#0" expanded="true" />
+            <element signature="e#23#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/scripts/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="213" selection-end="213" vertical-scroll-proportion="0.25110132" vertical-offset="0" max-vertical-offset="681">
+          <folding>
+            <element signature="e#52#83#0" expanded="true" />
           </folding>
         </state>
       </provider>
