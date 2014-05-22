@@ -36,7 +36,7 @@ class SimulateSweep(BaseScript) :
     def _run(self):
         # Init mysql Acess
         db = MySQLdb.connect(host = "localhost",
-                                    port = "3306",
+                                    port = 3306,
                                     user = "andremr",
                                     passwd = "13vI0U54",
                                     db = "hapmap")
@@ -44,12 +44,11 @@ class SimulateSweep(BaseScript) :
 
         # Load samples POP data
         samples = dict()
-        pops = list()
-        for line in open('%s/phase1_integrated_calls.20101123.ALL.panel', 'r') :
+        pops = ('AFR', 'ASN', 'EUR')
+
+        for line in open('%s/phase1_integrated_calls.20101123.ALL.panel' % self.__kvcf, 'r') :
             (smid, _, pop) = line.lstrip().split()[0:3]
             samples[smid] = pop
-            if not pops.__contains__(pop):
-                pops.append(pop)
 
         # Init processing
         for line in open(self.__ipt, 'r'):
@@ -71,9 +70,11 @@ class SimulateSweep(BaseScript) :
                 if(samples[sample] != 'AMR'):
                     sminv.append(sample)
 
-            mrate = 4*n*0.013
             n = len(sminv)
-            countpop = dict.fromkeys(('AFR', 'ASN', 'EUR'), 0)
+            mrate = 4*n*0.013
+            fx = len(split.get_hom_alts())/n
+            countpop = dict.fromkeys(pops, 0)
+
             for smid in sminv:
                 countpop[samples[smid]] += 2
             npop = ' '.join(map(str, countpop.values()))
@@ -86,23 +87,20 @@ class SimulateSweep(BaseScript) :
             variants = dv.evaluated()
 
             # Compute recombination rate according to hapmap
-            cursor.query("SELECT MIN(position), cm "
-                              "FROM recombination "
-                              "WHERE contig='chr%d' "
-                              "AND position >= %d", (int(chr), int(start)))
-            lw = cursor.fetchall()[0][1]
-            cursor.query("SELECT MIN(position), cm "
-                              "FROM recombination "
-                              "WHERE contig='chr%d' "
-                              "AND position >= %d", (int(chr), int(stop)))
-            up = cursor.fetchall()[0][1]
+            query = "SELECT MIN(position), cm FROM recombination WHERE contig='chr%d' AND position >= %d"
+            cursor.execute(query %  (int(chr), int(start)))
+            lw = float(cursor.fetchall()[0][1])
+            cursor.execute(query % (int(chr), int(stop)))
+            up = float(cursor.fetchall()[0][1])
             m = (up - lw) / 100
-            r = .5 * (1 - math.log(-m))
+            r = .5 * (1 - math.exp(-m))
             p = 4 * n * r
 
             # mount ms script
-            script = "ms %d %d -s %d -r %f -I %s" % (2*n, 10000, variants + 1, p, npop)
+            script = "~/src/ms/msdir/ms %d %d -s %d -r %f %d -I%d %s" % (2*n, 10000, variants + 1, p, variants+1, len(pops), npop)
             print script
+
+            # Process outputs 
 
 class VariantCounter(VCFWalker) :
     def _build_args(self, args):
