@@ -11,7 +11,8 @@ __author__ = 'andresantos'
 class SimulateSweep(BaseScript) :
     def _build_parser(self, parser):
         super(SimulateSweep, self)._build_parser(parser)
-        parser.add_option('-k', '--kvcf', dest='kvcf', 
+        parser.add_option('-k', '--kvcf',
+                          dest='kvcf',
                           help='1000 genomes vcf folder')
 
     def _build(self):
@@ -22,10 +23,12 @@ class SimulateSweep(BaseScript) :
         if self.__ipt is None:
             self._parser().error("You must inform a list of mutations "
                                  "and regions to evaluate")
+
         # Verify PATH to 1KG variant folder
         self.__kvcf = self._get_option('kvcf')
         if self.__kvcf is None:
             self._parser().error("You must inform the 1000 genomes VCF folder")
+
         # Produce base PATH for VCF file
         self.__vcf = "%s/ALL.chr%s.phase1_release_v3.20101123." \
                      "snps_indels_svs.genotypes.vcf.gz" % (self.__kvcf, '%d')
@@ -39,33 +42,42 @@ class SimulateSweep(BaseScript) :
                                     db = "hapmap")
         cursor = db.cursor()
 
-        # Load samples POP
+        # Load samples POP data
         samples = dict()
         pops = list()
         for line in open('%s/phase1_integrated_calls.20101123.ALL.panel', 'r') :
-            (smid, pop) = line.lstrip().split()[0:2]
+            (smid, _, pop) = line.lstrip().split()[0:3]
             samples[smid] = pop
             if not pops.__contains__(pop):
                 pops.append(pop)
 
+        # Init processing
         for line in open(self.__ipt, 'r'):
             (chr, pos, rs, start, stop) = line.lstrip().split()
+
             # Init mutation position
             mutation = Interval(chr, pos)
             rs = rs if rs != '.' else None
 
             # Divide samples according to the investigated mutation genotype
-            split = SplitByGenotypeWalker(self.__vcf % int(chr), mutation,
+            split = SplitByGenotypeWalker(self.__vcf % int(chr),
+                                          mutation,
                                           rsid=rs)
             split.walk()
 
-            # Dividing samples and count pop
-            sminv = split.get_hom_refs() + split.get_hom_alts()
+            # Dividing samples filtering AMR and count pop
+            sminv = list()
+            for sample in split.get_hom_refs() + split.get_hom_alts():
+                if(samples[sample] != 'AMR'):
+                    sminv.append(sample)
+
+            mrate = 4*n*0.013
             n = len(sminv)
-            countpop = dict.fromkeys(pops, 0)
+            countpop = dict.fromkeys(('AFR', 'ASN', 'EUR'), 0)
             for smid in sminv:
-                countpop[samples[smid]] += 1
+                countpop[samples[smid]] += 2
             npop = ' '.join(map(str, countpop.values()))
+            npop += " %d" % mrate
 
             # Count the number of variants
             window = Interval(chr, start, stop)
@@ -91,8 +103,6 @@ class SimulateSweep(BaseScript) :
             # mount ms script
             script = "ms %d %d -s %d -r %f -I %s" % (2*n, 10000, variants + 1, p, npop)
             print script
-
-
 
 class VariantCounter(VCFWalker) :
     def _build_args(self, args):
