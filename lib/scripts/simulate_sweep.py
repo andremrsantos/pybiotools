@@ -78,7 +78,7 @@ class SimulateSweep(BaseScript) :
             for smid in sminv:
                 countpop[samples[smid]] += 2
             npop = ' '.join(map(str, countpop.values()))
-            npop += " %d" % mrate
+            npop += " %f" % mrate
 
             # Count the number of variants
             window = Interval(chr, start, stop)
@@ -97,7 +97,7 @@ class SimulateSweep(BaseScript) :
             p = 4 * n * r
 
             # mount ms script
-            script = "~/src/ms/msdir/ms %d %d -s %d -r %f %d -I%d %s" % (2*n, 10000, variants + 1, p, variants+1, len(pops), npop)
+            script = "~/src/ms/msdir/ms %d %d -s %d -r %f %d -I %d %s" % (2*n, 10000, variants + 1, p, variants+1, len(pops), npop)
             print script
 
             # Process outputs 
