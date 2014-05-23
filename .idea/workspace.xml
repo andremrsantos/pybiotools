@@ -28,8 +28,10 @@
           <file leaf-file-name="simulate_sweep.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="6" column="46" selection-start="188" selection-end="188" vertical-scroll-proportion="-4.6089644" vertical-offset="3096" max-vertical-offset="3743">
-                  <folding />
+                <state line="202" column="0" selection-start="6343" selection-end="6343" vertical-scroll-proportion="0.9412674" vertical-offset="3229" max-vertical-offset="3952">
+                  <folding>
+                    <element signature="e#23#63#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -50,7 +52,7 @@
           <file leaf-file-name="kg_vcf_utils.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/utils/kg_vcf_utils.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="0" selection-start="268" selection-end="268" vertical-scroll-proportion="0.29366305" vertical-offset="0" max-vertical-offset="1083">
+                <state line="37" column="39" selection-start="1163" selection-end="1163" vertical-scroll-proportion="0.4126739" vertical-offset="436" max-vertical-offset="1083">
                   <folding />
                 </state>
               </provider>
@@ -470,7 +472,9 @@
     <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="22" selection-start="1491" selection-end="1492" vertical-scroll-proportion="0.0" vertical-offset="893" max-vertical-offset="3002">
-          <folding />
+          <folding>
+            <element signature="e#23#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -505,7 +509,9 @@
     <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="92" column="24" selection-start="3752" selection-end="3752" vertical-scroll-proportion="0.0" vertical-offset="1748" max-vertical-offset="2546">
-          <folding />
+          <folding>
+            <element signature="e#23#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -670,15 +676,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/utils/kg_vcf_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="268" selection-end="268" vertical-scroll-proportion="0.29366305" vertical-offset="0" max-vertical-offset="1083">
+        <state line="37" column="39" selection-start="1163" selection-end="1163" vertical-scroll-proportion="0.4126739" vertical-offset="436" max-vertical-offset="1083">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="46" selection-start="188" selection-end="188" vertical-scroll-proportion="-4.6089644" vertical-offset="3096" max-vertical-offset="3743">
-          <folding />
+        <state line="202" column="0" selection-start="6343" selection-end="6343" vertical-scroll-proportion="0.9412674" vertical-offset="3229" max-vertical-offset="3952">
+          <folding>
+            <element signature="e#23#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

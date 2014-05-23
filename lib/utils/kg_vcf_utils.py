@@ -16,8 +16,8 @@ class KGVCFUtils(object):
     def get_vcf_path(self, chromossome):
         chromossome = int(chromossome)
 
-        return "{0:}/ALL.chr{1:n}.*.genotypes.vcf.gz".format(self.__folder,
-                                                             chromossome)
+        return "{0:}/ALL.chr{1:n}.phase1_release_v3.20101123.snps_indels_svs.genotypes.vcf.gz".format(
+            self.__folder, chromossome)
 
     def samples(self):
         return list(self.__samples)
@@ -39,7 +39,7 @@ class KGVCFUtils(object):
         return self.__macro_population[sample]
 
     def __load_sample_info(self):
-        panel = "{0:}/*.ALL.panel".format(self.__folder)
+        panel = "{0:}/phase1_integrated_calls.20101123.ALL.panel".format(self.__folder)
 
         self.__macro_population = dict()
         self.__population = dict()

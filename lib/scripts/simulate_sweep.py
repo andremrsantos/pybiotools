@@ -1,8 +1,10 @@
 #! /usr/bin/env python
 from multiprocessing.queues import Queue
 import threading
+import time
 import MySQLdb
 import math
+import sys
 from lib.interval import Interval
 from lib.scripts.base_script import BaseScript
 from lib.scripts.split_by_genotype import SplitByGenotypeWalker
@@ -15,7 +17,8 @@ class SimulateSweep(BaseScript):
 
     def _build_parser(self, parser):
         super(SimulateSweep, self)._build_parser(parser)
-        parser.add_argument('-n', '--thread', dest='nt',
+        parser.add_argument('-n', '--thread',
+                            dest='nt', type=int,
                             help='Number of running threads')
         KGVCFUtils.add_argument(parser)
 
@@ -36,8 +39,10 @@ class RegionWalker(object):
                "user": "andremr",
                "passwd": "13vI0U54",
                "db": "hapmap"}
+
     # Migration Rate
     MU = 0.013
+
     # Populations TAGS
     POP_AMR = "AMR"
     POP_ASN = "ASN"
@@ -55,11 +60,14 @@ class RegionWalker(object):
                              passwd=RegionWalker.DBACESS['passwd'],
                              db=RegionWalker.DBACESS['db'])
         self.__db_cursor = db.cursor()
+
         # Set thread parameters
         self.__nthread = nthread
         self.__lock = threading.Lock()
-        self.__queue = Queue(open(input_list, 'r').readlines())
-        self.__total = len(self.__queue)
+        self.__queue = Queue()
+        for line in open(input_list, 'r'):
+            self.__queue.put(line)
+        self.__total = self.__queue.qsize()
 
     def _reduce_init(self):
         return 0
@@ -69,13 +77,16 @@ class RegionWalker(object):
         # Starting threads
         self.__threads = list()
         for i in range(self.__nthread):
-            thread = threading.Thread(target=(self._run), args=())
+            thread = threading.Thread(target=self._run)
+            thread.daemon = True
             thread.start()
             self.__threads.append(thread)
         while threading.activeCount() > 1:
-            print threading.activeCount()
+            time.sleep(1)
+            rate = self.__acc * 100.0/self.__total
+            sys.stderr.write("%05d / %05d = %03.2f %\d" % (self.__acc, self.__total, rate))
+            sys.stderr.flush()
         self._conclude(self.__acc)
-
 
     def _run(self):
         while not self.__queue.empty():
@@ -118,7 +129,7 @@ class RegionWalker(object):
         for sample in samples:
             macro_populations[self.__kgutil.macro_population(sample)] += 2
         migration_rate = 4*size*RegionWalker.MU
-        pop_attr = "3 {:} {:d}".format(
+        pop_attr = "3 {:} {:}".format(
             ' '.join(map(str, macro_populations.values())),
             migration_rate)
 
@@ -138,8 +149,8 @@ class RegionWalker(object):
         recombination = 4 * size * recombination_rate
 
         # mount ms script
-        script = "{0:} {1:d} {2:d} -s {3:d} -r {4:f} {5:d} -I {6:s}".format(
-            "~/src/ms/msdir/ms", 2*size, 10000, variants + 1, recombination, variants + 1, pop_attr)
+        script = "{0:} {1:} {2:} -s {3:} -r {4:} {3:} -I {5:}".format(
+            "~/src/ms/msdir/ms", 2*size, 10000, variants+1, recombination, pop_attr)
         self._print(script)
 
     def _print(self, string):
