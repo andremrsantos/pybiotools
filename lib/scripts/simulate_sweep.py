@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 from multiprocessing.queues import Queue
+from multiprocessing import Process
 import threading
 import time
 import MySQLdb
@@ -78,7 +79,7 @@ class RegionWalker(object):
         # Starting threads
         self.__threads = list()
         for i in range(self.__nthread):
-            thread = threading.Process(target=self._run)
+            thread = Process(target=self._run)
             thread.setDaemon(True)
             thread.start()
             self.__threads.append(thread)
