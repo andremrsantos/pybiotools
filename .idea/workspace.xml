@@ -22,54 +22,28 @@
     <favorites_list name="pybiotools" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.49321267">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="simulate_sweep.py" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="145" column="41" selection-start="4946" selection-end="4946" vertical-scroll-proportion="0.4126739" vertical-offset="2488" max-vertical-offset="3971">
-                  <folding>
-                    <element signature="e#23#63#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="vcf_walker.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lib/vcf_walker.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="32" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1159">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="kg_vcf_utils.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lib/utils/kg_vcf_utils.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="27" column="44" selection-start="826" selection-end="826" vertical-scroll-proportion="0.0" vertical-offset="436" max-vertical-offset="1083">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="pybiotools.py" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/pybiotools.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="47" column="14" selection-start="1421" selection-end="1421" vertical-scroll-proportion="0.23647605" vertical-offset="588" max-vertical-offset="1235">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="simulate_sweep.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="92" column="34" selection-start="3002" selection-end="3002" vertical-scroll-proportion="0.68333334" vertical-offset="1297" max-vertical-offset="4085">
+              <folding>
+                <element signature="e#23#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pybiotools.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pybiotools.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="16" selection-start="1819" selection-end="1819" vertical-scroll-proportion="0.0" vertical-offset="556" max-vertical-offset="1235">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -99,10 +73,10 @@
         <option value="$PROJECT_DIR$/lib/scripts/selective_sweep.py" />
         <option value="$PROJECT_DIR$/lib/scripts/__init__.py" />
         <option value="$PROJECT_DIR$/lib/scripts/biotoolscript.py" />
-        <option value="$PROJECT_DIR$/pybiotools.py" />
         <option value="$PROJECT_DIR$/lib/scripts/base_script.py" />
         <option value="$PROJECT_DIR$/lib/utils/1k_utils.py" />
         <option value="$PROJECT_DIR$/lib/utils/kg_vcf_utils.py" />
+        <option value="$PROJECT_DIR$/pybiotools.py" />
         <option value="$PROJECT_DIR$/lib/scripts/simulate_sweep.py" />
       </list>
     </option>
@@ -669,31 +643,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/vcf_walker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="32" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1159">
+        <state line="17" column="32" selection-start="565" selection-end="565" vertical-scroll-proportion="0.23493044" vertical-offset="171" max-vertical-offset="1159">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/utils/kg_vcf_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="44" selection-start="826" selection-end="826" vertical-scroll-proportion="0.0" vertical-offset="436" max-vertical-offset="1083">
+        <state line="27" column="44" selection-start="826" selection-end="826" vertical-scroll-proportion="0.13636364" vertical-offset="423" max-vertical-offset="1083">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybiotools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="16" selection-start="1819" selection-end="1819" vertical-scroll-proportion="0.0" vertical-offset="556" max-vertical-offset="1235">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="41" selection-start="4946" selection-end="4946" vertical-scroll-proportion="0.4126739" vertical-offset="2488" max-vertical-offset="3971">
+        <state line="92" column="34" selection-start="3002" selection-end="3002" vertical-scroll-proportion="0.68333334" vertical-offset="1297" max-vertical-offset="4085">
           <folding>
             <element signature="e#23#63#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybiotools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="14" selection-start="1421" selection-end="1421" vertical-scroll-proportion="0.23647605" vertical-offset="588" max-vertical-offset="1235">
-          <folding />
         </state>
       </provider>
     </entry>

@@ -68,6 +68,7 @@ class RegionWalker(object):
         for line in open(input_list, 'r'):
             self.__queue.put(line)
         self.__total = self.__queue.qsize()
+        self.__stop = False
 
     def _reduce_init(self):
         return 0
@@ -78,18 +79,23 @@ class RegionWalker(object):
         self.__threads = list()
         for i in range(self.__nthread):
             thread = threading.Thread(target=self._run)
-            thread.daemon = True
+            thread.setDaemon(True)
             thread.start()
             self.__threads.append(thread)
         while threading.activeCount() > 1:
             time.sleep(1)
-            rate = self.__acc * 100.0/self.__total
-            sys.stderr.write("%05d / %05d = %03.2f %%\r" % (self.__acc, self.__total, rate))
-            sys.stderr.flush()
+            try:
+                rate = self.__acc * 100.0/self.__total
+                sys.stderr.write("Processing: %05d / %05d = %03.2f %%\r" % (self.__acc, self.__total, rate))
+                sys.stderr.flush()
+            except KeyboardInterrupt:
+                sys.stderr.write("CTRL-C Recieved! Interrupting process...")
+                self.__stop = True
+
         self._conclude(self.__acc)
 
     def _run(self):
-        while not self.__queue.empty():
+        while not self.__queue.empty() or self.__stop:
             record = self.__queue.get()
             cur = self._map(record)
             self.__lock.acquire()
