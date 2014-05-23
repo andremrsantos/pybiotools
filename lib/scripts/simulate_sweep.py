@@ -76,7 +76,7 @@ class RegionWalker(object):
         self.__acc = self._reduce_init()
         # Starting threads
         self.__threads = Pool(self.__nthread)
-        tmp = self.__threads.map_async(self._map, self.__iterator)
+        self.__threads.apply_async(self.__safe_walk, self.__iterator)
         print tmp
         while threading.activeCount() > 1:
             rate = self.__acc * 100.0/self.__total
@@ -84,6 +84,12 @@ class RegionWalker(object):
             sys.stderr.flush()
 
         self._conclude(self.__acc)
+
+    def __safe_walk(self, record):
+        cur = self._map(record)
+        self.__lock.acquire()
+        self.__acc = self._reduce(self.__acc, cur)
+        self.__lock.release()
 
     def _map(self, record):
         (chr, pos, rs, start, stop) = record.lstrip().split()
