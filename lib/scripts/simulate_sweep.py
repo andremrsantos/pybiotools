@@ -80,7 +80,7 @@ class RegionWalker(object):
         self.__threads = list()
         for i in range(self.__nthread):
             thread = Process(target=self._run)
-            thread.setDaemon(True)
+            thread.daemon = True
             thread.start()
             self.__threads.append(thread)
         while threading.activeCount() > 1:
