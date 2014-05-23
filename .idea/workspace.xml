@@ -28,10 +28,8 @@
           <file leaf-file-name="simulate_sweep.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="80" column="19" selection-start="2597" selection-end="2597" vertical-scroll-proportion="-2.465224" vertical-offset="3115" max-vertical-offset="3762">
-                  <folding>
-                    <element signature="e#23#63#0" expanded="true" />
-                  </folding>
+                <state line="6" column="46" selection-start="188" selection-end="188" vertical-scroll-proportion="-4.6089644" vertical-offset="3096" max-vertical-offset="3743">
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -472,9 +470,7 @@
     <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="22" selection-start="1491" selection-end="1492" vertical-scroll-proportion="0.0" vertical-offset="893" max-vertical-offset="3002">
-          <folding>
-            <element signature="e#23#63#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -509,9 +505,7 @@
     <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="92" column="24" selection-start="3752" selection-end="3752" vertical-scroll-proportion="0.0" vertical-offset="1748" max-vertical-offset="2546">
-          <folding>
-            <element signature="e#23#63#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -683,10 +677,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="19" selection-start="2597" selection-end="2597" vertical-scroll-proportion="-2.465224" vertical-offset="3115" max-vertical-offset="3762">
-          <folding>
-            <element signature="e#23#63#0" expanded="true" />
-          </folding>
+        <state line="6" column="46" selection-start="188" selection-end="188" vertical-scroll-proportion="-4.6089644" vertical-offset="3096" max-vertical-offset="3743">
+          <folding />
         </state>
       </provider>
     </entry>

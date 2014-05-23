@@ -5,7 +5,6 @@ import MySQLdb
 import math
 from lib.interval import Interval
 from lib.scripts.base_script import BaseScript
-from lib.scripts.simulate_sweep import RegionWalker
 from lib.scripts.split_by_genotype import SplitByGenotypeWalker
 from lib.vcf_walker import VCFWalker
 from lib.utils.kg_vcf_utils import KGVCFUtils
