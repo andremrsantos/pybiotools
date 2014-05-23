@@ -152,6 +152,7 @@ class RegionWalker(object):
         script = "{0:} {1:} {2:} -s {3:} -r {4:} {3:} -I {5:}".format(
             "~/src/ms/msdir/ms", 2*size, 10000, variants+1, recombination, pop_attr)
         self._print(script)
+        return 1
 
     def _print(self, string):
         self.__lock.acquire()
