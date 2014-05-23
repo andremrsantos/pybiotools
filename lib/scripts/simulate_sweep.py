@@ -65,10 +65,8 @@ class RegionWalker(object):
         # Set thread parameters
         self.__nthread = nthread
         self.__lock = threading.Lock()
-        self.__queue = Queue()
-        for line in open(input_list, 'r'):
-            self.__queue.put(line)
-        self.__total = self.__queue.qsize()
+        self.__iterator = open(input_list, 'r').readlines()
+        self.__total = len(self.__iterator)
         self.__stop = False
 
     def _reduce_init(self):
@@ -78,7 +76,8 @@ class RegionWalker(object):
         self.__acc = self._reduce_init()
         # Starting threads
         self.__threads = Pool(self.__nthread)
-        self.__threads.map_async(self._run)
+        tmp = self.__threads.map_async(self._run, self.__iterator)
+        print tmp
         while threading.activeCount() > 1:
             rate = self.__acc * 100.0/self.__total
             sys.stderr.write("Processing: %05d / %05d = %03.2f %%\r" % (self.__acc, self.__total, rate))
@@ -86,13 +85,6 @@ class RegionWalker(object):
 
         self._conclude(self.__acc)
 
-    def _run(self):
-        while not self.__queue.empty() or self.__stop:
-            record = self.__queue.get()
-            cur = self._map(record)
-            self.__lock.acquire()
-            self.__acc = self._reduce(self.__acc, cur)
-            self.__lock.release()
 
     def _map(self, record):
         (chr, pos, rs, start, stop) = record.lstrip().split()
