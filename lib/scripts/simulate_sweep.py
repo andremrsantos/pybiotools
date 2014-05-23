@@ -78,7 +78,7 @@ class RegionWalker(object):
         self.__acc = self._reduce_init()
         # Starting threads
         self.__threads = Pool(self.__nthread)
-        self.__threads.map_assyc(self._run)
+        self.__threads.map_async(self._run)
         while threading.activeCount() > 1:
             rate = self.__acc * 100.0/self.__total
             sys.stderr.write("Processing: %05d / %05d = %03.2f %%\r" % (self.__acc, self.__total, rate))
