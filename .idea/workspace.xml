@@ -26,7 +26,7 @@
       <file leaf-file-name="simulate_sweep.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="12" selection-start="2805" selection-end="2805" vertical-scroll-proportion="0.5681818" vertical-offset="1297" max-vertical-offset="4009">
+            <state line="80" column="38" selection-start="2448" selection-end="2448" vertical-scroll-proportion="0.42424244" vertical-offset="1240" max-vertical-offset="4009">
               <folding>
                 <element signature="e#23#63#0" expanded="true" />
               </folding>
@@ -664,7 +664,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="12" selection-start="2805" selection-end="2805" vertical-scroll-proportion="0.5681818" vertical-offset="1297" max-vertical-offset="4009">
+        <state line="80" column="38" selection-start="2448" selection-end="2448" vertical-scroll-proportion="0.42424244" vertical-offset="1240" max-vertical-offset="4009">
           <folding>
             <element signature="e#23#63#0" expanded="true" />
           </folding>

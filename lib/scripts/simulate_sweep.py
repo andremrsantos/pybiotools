@@ -34,7 +34,7 @@ class SimulateSweep(BaseScript):
 
 class RegionWalker(object):
     # Database access
-    DBACESS = {"host": "localhost",
+    DBACESS = {"host": "192.168.0.1",
                "port": 3306,
                "user": "andremr",
                "passwd": "13vI0U54",
@@ -78,7 +78,7 @@ class RegionWalker(object):
         # Starting threads
         self.__threads = list()
         for i in range(self.__nthread):
-            thread = threading.Thread(target=self._run)
+            thread = threading.Process(target=self._run)
             thread.setDaemon(True)
             thread.start()
             self.__threads.append(thread)
@@ -146,7 +146,7 @@ class RegionWalker(object):
         start = float(self.__db_cursor.fetchall()[0][1])
         self.__db_cursor.execute(query % (int(chr), int(stop)))
         stop = float(self.__db_cursor.fetchall()[0][1])
-        recombination_morgan = (start - stop) / 100
+        recombination_morgan = (stop - start) / 100
         recombination_rate = .5 * (1 - math.exp(-recombination_morgan))
         recombination = 4 * size * recombination_rate
 
