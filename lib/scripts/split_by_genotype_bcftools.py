@@ -1,9 +1,9 @@
-from optparse import OptionParser
 import os
 import re
 import subprocess
 import warnings
-from lib.biotoolscript import BiotoolScript
+
+from lib.scripts.biotoolscript import BiotoolScript
 from lib.interval import Interval
 
 

@@ -3,10 +3,7 @@ from lib.interval import Interval
 
 __author__ = 'andresantos'
 
-import vcf
-
-from optparse import OptionParser
-from lib.biotoolscript import BiotoolScript
+from lib.scripts.biotoolscript import BiotoolScript
 from lib.vcf_walker import VCFWalker
 
 class SplitByGenotypeWalker(VCFWalker):

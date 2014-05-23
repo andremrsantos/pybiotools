@@ -1,48 +1,45 @@
 #! /usr/bin/env python
+from argparse import ArgumentParser
 
 from os import path
-from optparse import OptionParser
 import sys
 import traceback
-from lib.biotoolscript import BiotoolScript
 from sys import argv
-import lib.scripts
+
+from lib.scripts.biotoolscript import BiotoolScript
 from lib.scripts.base_script import BaseScript
 
 
-class DefaultScript(BiotoolScript):
+class PyBiotools(BiotoolScript):
+    def __init__(self, args, root):
+        super(PyBiotools, self).__init__(args, root, "PyBiotools scripts interface")
+
     def _build_parser(self, parser):
-        parser.set_description("Usage: %prog [program] [options]")
+        parser.add_argument("script", help="Define the program to be executed")
         return parser
 
-    def _build(self):
-        if not self._has_arg(0):
-            self.__unknown_script()
-
-    @staticmethod
-    def description():
-        return "Default script for redirecting call for others scripts"
-
     def run(self):
-        scripts = self.__scripts()
         script = None
-        for i in scripts:
-            if i.__name__ == self._get_arg(0):
-                script = i
+        for s in self.__scripts():
+            if s.__name__ == self._get_option('script'):
+                script = s
+                break
+
         if script is None:
             self.__unknown_script()
         else:
-            inst = script(argv[2:], self._root())
-            inst.run()
+            script = script(argv[2:], self._root())
+            script.run()
 
     def __unknown_script(self):
+        ignore = (PyBiotools, BaseScript, BiotoolScript)
         str = ""
         for script in self.__scripts():
-            if script != DefaultScript and script != BaseScript:
-                str += "%20s - %s\n" % (script.__name__,
-                                        script.description())
+            if not ignore.__contains__(script) :
+                str += "\t{:<24} - {:5}\n".format(script.__name__,
+                                               script.description())
 
-        self._parser().error("You must choose one script to run from the "
+        self._parser().error("\nYou must choose one script to run from the "
                              "following:\n%s" % str)
 
     def __scripts(self):
@@ -57,7 +54,7 @@ class DefaultScript(BiotoolScript):
         return sorted(scripts, key=(lambda x: x.__name__))
 
 def main():
-    script = DefaultScript(argv[1:2], path.dirname(path.abspath(__file__)))
+    script = PyBiotools(argv[1:2], path.dirname(path.abspath(__file__)))
     try:
         script.run()
         return 0

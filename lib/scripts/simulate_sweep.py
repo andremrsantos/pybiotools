@@ -1,106 +1,161 @@
 #! /usr/bin/env python
+from multiprocessing.queues import Queue
+import threading
 import MySQLdb
 import math
 from lib.interval import Interval
 from lib.scripts.base_script import BaseScript
+from lib.scripts.simulate_sweep import RegionWalker
 from lib.scripts.split_by_genotype import SplitByGenotypeWalker
 from lib.vcf_walker import VCFWalker
+from lib.utils.kg_vcf_utils import KGVCFUtils
 
 __author__ = 'andresantos'
 
-class SimulateSweep(BaseScript) :
+class SimulateSweep(BaseScript):
+
     def _build_parser(self, parser):
         super(SimulateSweep, self)._build_parser(parser)
-        parser.add_option('-k', '--kvcf',
-                          dest='kvcf',
-                          help='1000 genomes vcf folder')
+        parser.add_argument('-n', '--thread', dest='nt',
+                            help='Number of running threads')
+        KGVCFUtils.add_argument(parser)
 
     def _build(self):
         super(SimulateSweep, self)._build()
-        # Get PATH for the list of mutations to investigate
-        self.__ipt = self._get_option('input')
-        
-        if self.__ipt is None:
-            self._parser().error("You must inform a list of mutations "
-                                 "and regions to evaluate")
-
-        # Verify PATH to 1KG variant folder
-        self.__kvcf = self._get_option('kvcf')
-        if self.__kvcf is None:
-            self._parser().error("You must inform the 1000 genomes VCF folder")
-
-        # Produce base PATH for VCF file
-        self.__vcf = "%s/ALL.chr%s.phase1_release_v3.20101123." \
-                     "snps_indels_svs.genotypes.vcf.gz" % (self.__kvcf, '%d')
+        self.__walker = RegionWalker(self._get_option('input'),
+                                     self._get_option('kvcf'),
+                                     self._get_option('nt'))
 
     def _run(self):
-        # Init mysql Acess
-        db = MySQLdb.connect(host = "localhost",
-                                    port = 3306,
-                                    user = "andremr",
-                                    passwd = "13vI0U54",
-                                    db = "hapmap")
-        cursor = db.cursor()
+        self.__walker.walk()
 
-        # Load samples POP data
-        samples = dict()
-        pops = ('AFR', 'ASN', 'EUR')
 
-        for line in open('%s/phase1_integrated_calls.20101123.ALL.panel' % self.__kvcf, 'r') :
-            (smid, _, pop) = line.lstrip().split()[0:3]
-            samples[smid] = pop
+class RegionWalker(object):
+    # Database access
+    DBACESS = {"host": "localhost",
+               "port": 3306,
+               "user": "andremr",
+               "passwd": "13vI0U54",
+               "db": "hapmap"}
+    # Migration Rate
+    MU = 0.013
+    # Populations TAGS
+    POP_AMR = "AMR"
+    POP_ASN = "ASN"
+    POP_AFR = "AFR"
+    POP_EUR = "EUR"
+    POPULATIONS = [POP_AFR, POP_ASN, POP_EUR]
 
-        # Init processing
-        for line in open(self.__ipt, 'r'):
-            (chr, pos, rs, start, stop) = line.lstrip().split()
+    def __init__(self, input_list, kgfolder, nthread=1):
+        self.__kgutil = KGVCFUtils(kgfolder)
 
-            # Init mutation position
-            mutation = Interval(chr, pos)
-            rs = rs if rs != '.' else None
+        # Init mysql Access
+        db = MySQLdb.connect(host=RegionWalker.DBACESS['host'],
+                             port=RegionWalker.DBACESS['port'],
+                             user=RegionWalker.DBACESS['user'],
+                             passwd=RegionWalker.DBACESS['passwd'],
+                             db=RegionWalker.DBACESS['db'])
+        self.__db_cursor = db.cursor()
+        # Set thread parameters
+        self.__nthread = nthread
+        self.__lock = threading.Lock()
+        self.__queue = Queue(open(input_list, 'r').readlines())
+        self.__total = len(self.__queue)
 
-            # Divide samples according to the investigated mutation genotype
-            split = SplitByGenotypeWalker(self.__vcf % int(chr),
-                                          mutation,
-                                          rsid=rs)
-            split.walk()
+    def _reduce_init(self):
+        return 0
 
-            # Dividing samples filtering AMR and count pop
-            sminv = list()
-            for sample in split.get_hom_refs() + split.get_hom_alts():
-                if(samples[sample] != 'AMR'):
-                    sminv.append(sample)
+    def walk(self):
+        self.__acc = self._reduce_init()
+        # Starting threads
+        self.__threads = list()
+        for i in range(self.__nthread):
+            thread = threading.Thread(target=(self._run), args=())
+            thread.start()
+            self.__threads.append(thread)
+        while threading.activeCount() > 1:
+            print threading.activeCount()
+        self._conclude(self.__acc)
 
-            n = len(sminv)
-            mrate = 4*n*0.013
-            fx = len(split.get_hom_alts())/n
-            countpop = dict.fromkeys(pops, 0)
 
-            for smid in sminv:
-                countpop[samples[smid]] += 2
-            npop = ' '.join(map(str, countpop.values()))
-            npop += " %d" % mrate
+    def _run(self):
+        while not self.__queue.empty():
+            record = self.__queue.get()
+            cur = self._map(record)
+            self.__lock.acquire()
+            self.__acc = self._reduce(self.__acc, cur)
+            self.__lock.release()
 
-            # Count the number of variants
-            window = Interval(chr, start, stop)
-            dv = VariantCounter(self.__vcf % int(chr), window, samples=sminv)
-            dv.walk()
-            variants = dv.evaluated()
+    def _map(self, record):
+        (chr, pos, rs, start, stop) = record.lstrip().split()
 
-            # Compute recombination rate according to hapmap
-            query = "SELECT MIN(position), cm FROM recombination WHERE contig='chr%d' AND position >= %d"
-            cursor.execute(query %  (int(chr), int(start)))
-            lw = float(cursor.fetchall()[0][1])
-            cursor.execute(query % (int(chr), int(stop)))
-            up = float(cursor.fetchall()[0][1])
-            m = (up - lw) / 100
-            r = .5 * (1 - math.exp(-m))
-            p = 4 * n * r
+        # VCFPATH
+        vcf = self.__kgutil.get_vcf_path(chr)
 
-            # mount ms script
-            script = "~/src/ms/msdir/ms %d %d -s %d -r %f %d -I%d %s" % (2*n, 10000, variants + 1, p, variants+1, len(pops), npop)
-            print script
+        # Init mutation position
+        mutation = Interval(chr, pos)
+        rs = rs if rs != '.' else None
 
-            # Process outputs 
+        # Divide samples according to the investigated mutation genotype
+        split = SplitByGenotypeWalker(vcf, mutation, rsid=rs)
+        split.walk()
+
+        # Dividing samples filtering AMR and compute mutation frequency
+        samples = list()
+        frequency = 0
+        for sample in split.get_hom_refs():
+            if self.__kgutil.macro_population(sample) != 'AMR':
+                samples.append(sample)
+        for sample in split.get_hom_alts():
+            if self.__kgutil.macro_population(sample) != 'AMR':
+                frequency += 1
+                samples.append(sample)
+
+        size = len(samples)
+        frequency /= size
+
+        # Prepare population attr
+        macro_populations = dict.fromkeys(RegionWalker.POPULATIONS, 0)
+        for sample in samples:
+            macro_populations[self.__kgutil.macro_population(sample)] += 2
+        migration_rate = 4*size*RegionWalker.MU
+        pop_attr = "3 {:} {:d}".format(
+            ' '.join(map(str, macro_populations.values())),
+            migration_rate)
+
+        # Count the number of variants
+        dv = VariantCounter(vcf, Interval(chr, start, stop), samples=samples)
+        dv.walk()
+        variants = dv.evaluated()
+
+        # Compute recombination rate according to hapmap
+        query = "SELECT MIN(position), cm FROM recombination WHERE contig='chr%d' AND position >= %d"
+        self.__db_cursor.execute(query %  (int(chr), int(start)))
+        start = float(self.__db_cursor.fetchall()[0][1])
+        self.__db_cursor.execute(query % (int(chr), int(stop)))
+        stop = float(self.__db_cursor.fetchall()[0][1])
+        recombination_morgan = (start - stop) / 100
+        recombination_rate = .5 * (1 - math.exp(-recombination_morgan))
+        recombination = 4 * size * recombination_rate
+
+        # mount ms script
+        script = "{0:} {1:d} {2:d} -s {3:d} -r {4:f} {5:d} -I {6:s}".format(
+            "~/src/ms/msdir/ms", 2*size, 10000, variants + 1, recombination, variants + 1, pop_attr)
+        self._print(script)
+
+    def _print(self, string):
+        self.__lock.acquire()
+        print string
+        self.__lock.release()
+
+    def _reduce(self, acc, cur):
+        return acc + cur
+
+    def _conclude(self, acc):
+        self.__total = acc
+
+    def evaluated(self):
+        return self.__total
 
 class VariantCounter(VCFWalker) :
     def _build_args(self, args):
