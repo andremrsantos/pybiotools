@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 from multiprocessing.queues import Queue
-from multiprocessing import Process
+from multiprocessing import Pool
 import threading
 import time
 import MySQLdb
@@ -77,14 +77,9 @@ class RegionWalker(object):
     def walk(self):
         self.__acc = self._reduce_init()
         # Starting threads
-        self.__threads = list()
-        for i in range(self.__nthread):
-            thread = Process(target=self._run)
-            thread.daemon = True
-            thread.start()
-            self.__threads.append(thread)
+        self.__threads = Pool(self.__nthread)
+        self.__threads.map_assyc(self._run)
         while threading.activeCount() > 1:
-            time.sleep(1)
             rate = self.__acc * 100.0/self.__total
             sys.stderr.write("Processing: %05d / %05d = %03.2f %%\r" % (self.__acc, self.__total, rate))
             sys.stderr.flush()
