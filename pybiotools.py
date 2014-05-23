@@ -55,14 +55,8 @@ class PyBiotools(BiotoolScript):
 
 def main():
     script = PyBiotools(argv[1:2], path.dirname(path.abspath(__file__)))
-    try:
-        script.run()
-        return 0
-    except Exception as e:
-        traceback.print_exc(sys.stderr)
-        sys.stderr.write("%s : %s\n" % (e.__class__.__name__, e.message))
-        sys.stderr.flush()
-        return 1
+    script.run()
+    return 0
 
 if __name__ == "__main__":
     main()

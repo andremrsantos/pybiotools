@@ -84,13 +84,9 @@ class RegionWalker(object):
             self.__threads.append(thread)
         while threading.activeCount() > 1:
             time.sleep(1)
-            try:
-                rate = self.__acc * 100.0/self.__total
-                sys.stderr.write("Processing: %05d / %05d = %03.2f %%\r" % (self.__acc, self.__total, rate))
-                sys.stderr.flush()
-            except KeyboardInterrupt:
-                sys.stderr.write("CTRL-C Recieved! Interrupting process...")
-                self.__stop = True
+            rate = self.__acc * 100.0/self.__total
+            sys.stderr.write("Processing: %05d / %05d = %03.2f %%\r" % (self.__acc, self.__total, rate))
+            sys.stderr.flush()
 
         self._conclude(self.__acc)
 
