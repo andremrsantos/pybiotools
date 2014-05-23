@@ -84,7 +84,7 @@ class RegionWalker(object):
         while threading.activeCount() > 1:
             time.sleep(1)
             rate = self.__acc * 100.0/self.__total
-            sys.stderr.write("%05d / %05d = %03.2f \%\r" % (self.__acc, self.__total, rate))
+            sys.stderr.write("%05d / %05d = %03.2f %%\r" % (self.__acc, self.__total, rate))
             sys.stderr.flush()
         self._conclude(self.__acc)
 
