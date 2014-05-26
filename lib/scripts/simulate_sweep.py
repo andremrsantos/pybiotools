@@ -32,8 +32,8 @@ class SimulateSweep(BaseScript):
     def _run(self):
         self.__walker.walk()
 
-    def report(self):
-	print "Ended..."
+    def _report(self):
+        print "Ended..."
 
 class RegionWalker(object):
     # Database access
@@ -67,10 +67,10 @@ class RegionWalker(object):
         # Set thread parameters
         self.__nthread = nthread
         self.__queue = Queue()
-	for line in open(input_list, 'r'):
-		self.__queue.put(line)
-	print self.__queue
-	
+        for line in open(input_list, 'r'):
+            self.__queue.put(line)
+        print self.__queue.join()
+
         self.__total = self.__queue.qsize()
 
     def _reduce_init(self):
