@@ -53,10 +53,12 @@ class PyBiotools(BiotoolScript):
                     work.append(child)
         return sorted(scripts, key=(lambda x: x.__name__))
 
-def main():
-    script = PyBiotools(argv[1:2], path.dirname(path.abspath(__file__)))
-    script.run()
-    return 0
+    def _report(self):
+        print "Endend Main"
 
 if __name__ == "__main__":
-    main()
+    try:
+        script = PyBiotools(argv[1:2], path.dirname(path.abspath(__file__)))
+        script.run()
+    except KeyboardInterrupt:
+        print "Keyboar Interrupt main..."

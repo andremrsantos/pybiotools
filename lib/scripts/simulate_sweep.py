@@ -1,6 +1,6 @@
 #! /usr/bin/env python
-from multiprocessing.queues import Queue
-from multiprocessing import Pool
+from Queue import Queue
+from multiprocessing import Process
 import threading
 import time
 import MySQLdb
@@ -19,7 +19,7 @@ class SimulateSweep(BaseScript):
     def _build_parser(self, parser):
         super(SimulateSweep, self)._build_parser(parser)
         parser.add_argument('-n', '--thread',
-                            dest='nt', type=int,
+                            dest='nt', type=int, default=1,
                             help='Number of running threads')
         KGVCFUtils.add_argument(parser)
 
@@ -32,6 +32,8 @@ class SimulateSweep(BaseScript):
     def _run(self):
         self.__walker.walk()
 
+    def report(self):
+	print "Ended..."
 
 class RegionWalker(object):
     # Database access
@@ -64,10 +66,12 @@ class RegionWalker(object):
 
         # Set thread parameters
         self.__nthread = nthread
-        self.__lock = threading.Lock()
-        self.__iterator = open(input_list, 'r').readlines()
-        self.__total = len(self.__iterator)
-        self.__stop = False
+        self.__queue = Queue()
+	for line in open(input_list, 'r'):
+		self.__queue.put(line)
+	print self.__queue
+	
+        self.__total = self.__queue.qsize()
 
     def _reduce_init(self):
         return 0
@@ -75,9 +79,11 @@ class RegionWalker(object):
     def walk(self):
         self.__acc = self._reduce_init()
         # Starting threads
-        self.__threads = Pool(self.__nthread)
-        self.__threads.apply_async(self.__safe_walk, self.__iterator)
-        print tmp
+        self.__threads = list()
+	for i in range(self.__nthread):
+		t = Process(target=self.__safe_walk)
+		t.start()
+
         while threading.activeCount() > 1:
             rate = self.__acc * 100.0/self.__total
             sys.stderr.write("Processing: %05d / %05d = %03.2f %%\r" % (self.__acc, self.__total, rate))
@@ -85,11 +91,13 @@ class RegionWalker(object):
 
         self._conclude(self.__acc)
 
-    def __safe_walk(self, record):
-        cur = self._map(record)
-        self.__lock.acquire()
-        self.__acc = self._reduce(self.__acc, cur)
-        self.__lock.release()
+    def __safe_walk(self):
+        try :
+		while not self.__queue.empty():
+			cur = self._map(self.__queue.get())
+        		self.__acc = self._reduce(self.__acc, cur)
+	except KeyboardInterrupt:
+		print "Keyboard interrupt in Process...."
 
     def _map(self, record):
         (chr, pos, rs, start, stop) = record.lstrip().split()
@@ -150,9 +158,7 @@ class RegionWalker(object):
         return 1
 
     def _print(self, string):
-        self.__lock.acquire()
         print string
-        self.__lock.release()
 
     def _reduce(self, acc, cur):
         return acc + cur
