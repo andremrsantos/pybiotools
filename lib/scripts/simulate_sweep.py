@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 from Queue import Queue
 from multiprocessing import Process
+import multiprocessing
 import threading
 import time
 import MySQLdb
@@ -13,6 +14,8 @@ from lib.vcf_walker import VCFWalker
 from lib.utils.kg_vcf_utils import KGVCFUtils
 
 __author__ = 'andresantos'
+
+MySQLdb.threadsafety = 2
 
 class SimulateSweep(BaseScript):
 
@@ -57,19 +60,18 @@ class RegionWalker(object):
         self.__kgutil = KGVCFUtils(kgfolder)
 
         # Init mysql Access
-        db = MySQLdb.connect(host=RegionWalker.DBACESS['host'],
+        self.__db = MySQLdb.connect(host=RegionWalker.DBACESS['host'],
                              port=RegionWalker.DBACESS['port'],
                              user=RegionWalker.DBACESS['user'],
                              passwd=RegionWalker.DBACESS['passwd'],
                              db=RegionWalker.DBACESS['db'])
-        self.__db_cursor = db.cursor()
 
         # Set thread parameters
         self.__nthread = nthread
+	self.__lock = threading.Lock()
         self.__queue = Queue()
         for line in open(input_list, 'r'):
             self.__queue.put(line)
-        print self.__queue.join()
 
         self.__total = self.__queue.qsize()
 
@@ -81,11 +83,13 @@ class RegionWalker(object):
         # Starting threads
         self.__threads = list()
 	for i in range(self.__nthread):
-		t = Process(target=self.__safe_walk)
+		t = threading.Thread(target=self.__safe_walk)
+		t.daemon = True
 		t.start()
-
-        while threading.activeCount() > 1:
-            rate = self.__acc * 100.0/self.__total
+	
+        while not self.__queue.empty():
+            time.sleep(0.1)
+	    rate = self.__acc * 100.0 / self.__total
             sys.stderr.write("Processing: %05d / %05d = %03.2f %%\r" % (self.__acc, self.__total, rate))
             sys.stderr.flush()
 
@@ -94,15 +98,17 @@ class RegionWalker(object):
     def __safe_walk(self):
         try :
 		while not self.__queue.empty():
-			cur = self._map(self.__queue.get())
+			head = self.__queue.get()
+			cur = self._map(head)
+			self.__lock.acquire()
         		self.__acc = self._reduce(self.__acc, cur)
+			self.__lock.release()
 	except KeyboardInterrupt:
 		print "Keyboard interrupt in Process...."
 
     def _map(self, record):
         (chr, pos, rs, start, stop) = record.lstrip().split()
-
-        # VCFPATH
+	# VCFPATH
         vcf = self.__kgutil.get_vcf_path(chr)
 
         # Init mutation position
@@ -112,7 +118,6 @@ class RegionWalker(object):
         # Divide samples according to the investigated mutation genotype
         split = SplitByGenotypeWalker(vcf, mutation, rsid=rs)
         split.walk()
-
         # Dividing samples filtering AMR and compute mutation frequency
         samples = list()
         frequency = 0
@@ -126,7 +131,6 @@ class RegionWalker(object):
 
         size = len(samples)
         frequency /= size
-
         # Prepare population attr
         macro_populations = dict.fromkeys(RegionWalker.POPULATIONS, 0)
         for sample in samples:
@@ -135,25 +139,25 @@ class RegionWalker(object):
         pop_attr = "3 {:} {:}".format(
             ' '.join(map(str, macro_populations.values())),
             migration_rate)
-
         # Count the number of variants
-        dv = VariantCounter(vcf, Interval(chr, start, stop), samples=samples)
+	it = Interval(chr, start, stop)
+        dv = VariantCounter(vcf, it, samples=samples)
         dv.walk()
         variants = dv.evaluated()
-
         # Compute recombination rate according to hapmap
         query = "SELECT MIN(position), cm FROM recombination WHERE contig='chr%d' AND position >= %d"
-        self.__db_cursor.execute(query %  (int(chr), int(start)))
-        start = float(self.__db_cursor.fetchall()[0][1])
-        self.__db_cursor.execute(query % (int(chr), int(stop)))
-        stop = float(self.__db_cursor.fetchall()[0][1])
-        recombination_morgan = (stop - start) / 100
+	cursor = self.__db.cursor()
+	cursor.execute(query %  (int(chr), int(start)))
+        start = float(cursor.fetchall()[0][1])
+        cursor.execute(query % (int(chr), int(stop)))
+        stop = float(cursor.fetchall()[0][1])
+        cursor.close()
+	recombination_morgan = (stop - start) / 100
         recombination_rate = .5 * (1 - math.exp(-recombination_morgan))
         recombination = 4 * size * recombination_rate
-
         # mount ms script
-        script = "{0:} {1:} {2:} -s {3:} -r {4:} {3:} -I {5:}".format(
-            "~/src/ms/msdir/ms", 2*size, 10000, variants+1, recombination, pop_attr)
+        script = "{6} -- {0:} {1:} {2:} -s {3:} -r {4:} {3:} -I {5:}".format(
+            "~/src/ms/msdir/ms", 2*size, 10000, variants+1, recombination, pop_attr, it)
         self._print(script)
         return 1
 
