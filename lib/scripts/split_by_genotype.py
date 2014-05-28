@@ -4,7 +4,7 @@ from lib.interval import Interval
 __author__ = 'andresantos'
 
 from lib.scripts.biotoolscript import BiotoolScript
-from lib.vcf_walker import VCFWalker
+from lib.walkers.vcf_walker import VCFWalker
 
 class SplitByGenotypeWalker(VCFWalker):
     def _build_args(self, args):

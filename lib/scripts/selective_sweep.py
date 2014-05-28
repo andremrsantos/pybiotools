@@ -1,14 +1,14 @@
 #! /usr/bin/env python
-from _ctypes import ArgumentError
 from collections import deque
 from fractions import gcd
 import fractions
 import itertools
-import sys
+
 from lib.interval import Interval
 from lib.scripts.base_script import BaseScript
 from lib.scripts.split_by_genotype import SplitByGenotypeWalker
-from lib.vcf_walker import VCFWalker
+from lib.walkers.vcf_walker import VCFWalker
+
 
 __author__ = 'andresantos'
 
