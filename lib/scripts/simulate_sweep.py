@@ -22,17 +22,13 @@ MySQLdb.threadsafety = 2
 class SimulateSweep(BaseScript):
     def _build_parser(self, parser):
         super(SimulateSweep, self)._build_parser(parser)
-        parser.add_argument('-n', '--thread',
-                            dest='nt', type=int, default=1,
-                            help='Number of running threads')
         KGVCFUtils.add_argument(parser)
 
     def _build(self):
         super(SimulateSweep, self)._build()
         self.__walker = RegionSimulationWalker(
             self._get_option('input'),
-            self._get_option('kvcf'),
-            self._get_option('nt')
+            self._get_option('kvcf')
         )
 
     def _run(self):

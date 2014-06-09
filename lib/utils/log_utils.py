@@ -12,14 +12,14 @@ class LogUtils(object):
         self._starting()
 
     def _starting(self):
-        self._logging("Starting %s processing..." % self.__script_name)
+        self.log("Starting %s processing..." % self.__script_name)
 
-    def _logging(self, string):
+    def log(self, string):
         log = "## {0:} -- {1:}\n".format(datetime.now(), string)
         self.__write(log)
 
-    def _logging_progress(self):
-        self._logging(self.__script.progress())
+    def log_progress(self):
+        self.log(self.__script.log_progress())
 
     def __write(self, string):
         self.__output.write(string)

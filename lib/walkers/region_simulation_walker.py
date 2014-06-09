@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+
 import MySQLdb
 import math
 from lib.interval import Interval
@@ -63,7 +64,7 @@ class RegionSimulationWalker(BaseWalker):
         dv.walk()
         return dv.evaluated()
 
-    def __compute_recombination(self, start, stop):
+    def __compute_recombination(self, chr, start, stop):
         query = "SELECT MIN(position), cm FROM recombination WHERE contig='chr%d' AND position >= %d"
         cursor = self.__db.cursor()
         cursor.execute(query % (int(chr), int(start)))
@@ -94,15 +95,19 @@ class RegionSimulationWalker(BaseWalker):
         variants = self.__count_variants(chr, start, stop, vcf, samples)
 
         # Compute recombination rate according to hapmap
-        recombination = self.__compute_recombination(start, stop)
+        recombination = self.__compute_recombination(chr, start, stop)
 
         # Simulate
         simulation = SimulationWalker(size, variants, frequency, macro_populations, recombination)
+        print "// Mutation --- {:} {:} {:} {:} {:}".format(chr, pos, start, stop, frequency)
         simulation.walk()
-        diversity_range = simulation.diversity()
-        for mr, rr, dv in diversity_range:
-            # CHR POS RS START END MR RR DV
-            print "{:} {:} {:} {:} {:} {:} {:} {:}".format(chr, pos, start, stop, mr, rr, dv)
+        # diversity_range = simulation.diversity()
+        # for vl in diversity_range:
+        #    print vl
+        #    # CHR POS RS START END MR RR DV
+        #    # print "{:} {:} {:} {:} {:} {:} {:} {:}".format(chr, pos, start, stop, mr, rr, dv)
+        #
+        #    print "{:} {:} {:} {:} {:}".format(chr, pos, start, stop, vl)
         return 1
 
     def evaluated(self):

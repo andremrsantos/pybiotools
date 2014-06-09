@@ -7,10 +7,12 @@ __author__ = 'andresantos'
 
 class BaseWalker(object):
     def __init__(self, input, **kwargs):
-        self.__iterator = open(input, 'r')
+        self._set_iterator(open(input, 'r'))
         self._build_args(kwargs)
-
         self.__total = int(os.popen('wc -l %s' % input).read().split()[0])
+
+    def _set_iterator(self, iter):
+        self.__iterator = iter
 
     def _build_args(self, args):
         pass
@@ -24,7 +26,7 @@ class BaseWalker(object):
                 break
             if not self._filter(record):
                cur = self._map(record)
-               acc = self.__reduce(acc, cur)
+               acc = self._reduce(acc, cur)
         self._conclude(acc)
         return self
 
@@ -53,8 +55,11 @@ class BaseWalker(object):
         self.__evaluated = acc
 
     def progress(self):
+        return self.__at * 100.0 / self.__total
+
+    def log_progress(self):
         name = self.__class__.__name__
-        rate = self.__at * 100.0 / self.__total
+        rate = self.progress()
         return "{:} progress: {:}% -- Processing line {:} of {:}".format(
             name, rate, self.__at, self.__total)
 
