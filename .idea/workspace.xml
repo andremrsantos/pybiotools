@@ -4,6 +4,7 @@
     <list default="true" id="ba1f9c18-7bba-4df6-8ef8-45b5690ae3c8" name="Default" comment="" />
     <ignored path="pybiotools.iws" />
     <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,125 +23,21 @@
     <favorites_list name="pybiotools" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.3285068">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="log_utils.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lib/utils/log_utils.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="22" column="0" selection-start="599" selection-end="599" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="589">
-                  <folding>
-                    <element signature="e#23#33#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="base_walker.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lib/walkers/base_walker.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="45" column="12" selection-start="1091" selection-end="1091" vertical-scroll-proportion="0.0" vertical-offset="569" max-vertical-offset="1273">
-                  <folding>
-                    <element signature="e#23#45#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="selective_sweep.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="142" column="31" selection-start="5434" selection-end="5434" vertical-scroll-proportion="0.0" vertical-offset="3381" max-vertical-offset="4028">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="simulation_walker.py" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/lib/walkers/simulation_walker.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="15" column="45" selection-start="352" selection-end="352" vertical-scroll-proportion="-1.3445513" vertical-offset="1124" max-vertical-offset="1786">
-                  <folding>
-                    <element signature="e#23#32#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="simulate_sweep.py" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="33" column="8" selection-start="933" selection-end="933" vertical-scroll-proportion="0.6045455" vertical-offset="0" max-vertical-offset="665">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="region_simulation_walker.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lib/walkers/region_simulation_walker.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="108" column="31" selection-start="3966" selection-end="3966" vertical-scroll-proportion="0.0" vertical-offset="1430" max-vertical-offset="2166">
-                  <folding>
-                    <element signature="e#23#37#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="changedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/lib/script.py" />
-        <option value="$PROJECT_DIR$/lib/__init__.py" />
-        <option value="$PROJECT_DIR$/lib/hg19.py" />
-        <option value="$PROJECT_DIR$/lib/b37..py" />
-        <option value="$PROJECT_DIR$/lib/contig_region.py" />
-        <option value="$PROJECT_DIR$/lib/VCFWalker.py" />
-        <option value="$PROJECT_DIR$/lib/reference/b37.py" />
-        <option value="$PROJECT_DIR$/lib/reference/hg19.py" />
-        <option value="$PROJECT_DIR$/lib/reference/__init__.py" />
-        <option value="$PROJECT_DIR$/lib/scripts/split_by_genotype_bcftools.py" />
-        <option value="$PROJECT_DIR$/lib/scripts/split_by_genotype.py" />
-        <option value="$PROJECT_DIR$/lib/biotoolscript.py" />
-        <option value="$PROJECT_DIR$/lib/simulation/bootstrap.py" />
-        <option value="$PROJECT_DIR$/lib/scripts/db_script.py" />
-        <option value="$PROJECT_DIR$/lib/scripts/indel_ontology.py" />
-        <option value="$PROJECT_DIR$/lib/vcf_walker.py" />
-        <option value="$PROJECT_DIR$/lib/interval.py" />
-        <option value="$PROJECT_DIR$/lib/scripts/selective_sweep.py" />
-        <option value="$PROJECT_DIR$/lib/scripts/__init__.py" />
-        <option value="$PROJECT_DIR$/lib/scripts/biotoolscript.py" />
-        <option value="$PROJECT_DIR$/lib/scripts/base_script.py" />
-        <option value="$PROJECT_DIR$/lib/utils/1k_utils.py" />
-        <option value="$PROJECT_DIR$/lib/utils/kg_vcf_utils.py" />
-        <option value="$PROJECT_DIR$/pybiotools.py" />
-        <option value="$PROJECT_DIR$/lib/walkers/variant_counter.py" />
-        <option value="$PROJECT_DIR$/lib/walkers/region_walker.py" />
-        <option value="$PROJECT_DIR$/lib/utils/log_utils.py" />
-        <option value="$PROJECT_DIR$/lib/walkers/base_walker.py" />
-        <option value="$PROJECT_DIR$/lib/walkers/simulation_walker.py" />
-        <option value="$PROJECT_DIR$/lib/walkers/region_simulation_walker.py" />
-        <option value="$PROJECT_DIR$/lib/scripts/simulate_sweep.py" />
-      </list>
-    </option>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
-    <option name="width" value="1276" />
-    <option name="height" value="778" />
+    <option name="x" value="64" />
+    <option name="y" value="-4" />
+    <option name="width" value="1537" />
+    <option name="height" value="904" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -149,6 +46,8 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
+    <OptionsSetting value="true" id="Undo Check Out" />
+    <OptionsSetting value="true" id="Get Latest Version" />
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
@@ -328,6 +227,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pybiotools" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -352,6 +252,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pybiotools" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -375,8 +276,10 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pybiotools" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -389,6 +292,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pybiotools" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -411,6 +315,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pybiotools" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -430,6 +335,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pybiotools" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -463,31 +369,44 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="ba1f9c18-7bba-4df6-8ef8-45b5690ae3c8" name="Default" comment="" />
       <created>1395944450352</created>
+      <option name="number" value="Default" />
       <updated>1395944450352</updated>
+      <workItem from="1421846532337" duration="2000" />
     </task>
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2000" />
+  </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1276" height="778" extended-state="6" />
-    <editor active="true" />
+    <frame x="64" y="-4" width="1537" height="904" extended-state="6" />
+    <editor active="false" />
     <layout>
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.119521916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -504,13 +423,16 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.119521916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
       <collection />
     </option>
   </component>
@@ -526,257 +448,6 @@
     <breakpoint-manager>
       <option name="time" value="4" />
     </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="39" selection-start="1546" selection-end="1546" vertical-scroll-proportion="0.0" vertical-offset="1064" max-vertical-offset="4066">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="39" selection-start="1546" selection-end="1546" vertical-scroll-proportion="0.0" vertical-offset="931" max-vertical-offset="4066">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="38" selection-start="1994" selection-end="1994" vertical-scroll-proportion="0.0" vertical-offset="893" max-vertical-offset="3990">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="22" selection-start="1491" selection-end="1492" vertical-scroll-proportion="0.0" vertical-offset="893" max-vertical-offset="3002">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/utils/kg_vcf_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="380" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybiotools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="40" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="1387" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/base_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="28" selection-start="344" selection-end="344" vertical-scroll-proportion="0.0" vertical-offset="209" max-vertical-offset="437" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="31" selection-start="5469" selection-end="5469" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4180" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="24" selection-start="3752" selection-end="3752" vertical-scroll-proportion="0.0" vertical-offset="1748" max-vertical-offset="2546">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="171" max-vertical-offset="285" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/db_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="37" selection-start="1728" selection-end="1736" vertical-scroll-proportion="0.0" vertical-offset="836" max-vertical-offset="1254" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="27" selection-start="3564" selection-end="3564" vertical-scroll-proportion="0.0" vertical-offset="1634" max-vertical-offset="3914" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="27" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0" vertical-offset="608" max-vertical-offset="2413" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/interval.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="29" selection-start="1519" selection-end="1519" vertical-scroll-proportion="0.0" vertical-offset="931" max-vertical-offset="2394" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="56" selection-start="3043" selection-end="3043" vertical-scroll-proportion="0.0" vertical-offset="1691" max-vertical-offset="2204" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="28" selection-start="356" selection-end="656" vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="2413" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="12" selection-start="2396" selection-end="2396" vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="1740" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="28" selection-start="356" selection-end="656" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1905" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="12" selection-start="2396" selection-end="2396" vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="1740" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="28" selection-start="356" selection-end="656" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1905" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="24" selection-start="76" selection-end="76" vertical-scroll-proportion="0.12730318" vertical-offset="0" max-vertical-offset="597" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/reference/b37.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="7" selection-start="61" selection-end="61" vertical-scroll-proportion="0.12258065" vertical-offset="0" max-vertical-offset="1824" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/reference/hg19.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="10" selection-start="61" selection-end="61" vertical-scroll-proportion="0.12258065" vertical-offset="0" max-vertical-offset="1995" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/reference/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="209" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype_bcftools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="14" selection-start="265" selection-end="281" vertical-scroll-proportion="0.0" vertical-offset="1487" max-vertical-offset="2071" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/indel_ontology.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="37" selection-start="3970" selection-end="3970" vertical-scroll-proportion="0.6746575" vertical-offset="1487" max-vertical-offset="2185" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/simulation/bootstrap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="19" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="584" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/interval.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="27" selection-start="1643" selection-end="1643" vertical-scroll-proportion="-0.05757576" vertical-offset="1045" max-vertical-offset="2489" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/split_by_genotype.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="27" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="2413" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="213" selection-end="213" vertical-scroll-proportion="0.25987843" vertical-offset="0" max-vertical-offset="658" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/db_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="37" selection-start="1728" selection-end="1736" vertical-scroll-proportion="0.36474165" vertical-offset="539" max-vertical-offset="1197" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/biotoolscript.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="477" selection-end="477" vertical-scroll-proportion="0.34650457" vertical-offset="76" max-vertical-offset="950" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/base_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="28" selection-start="344" selection-end="344" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="437" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/utils/kg_vcf_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="44" selection-start="826" selection-end="826" vertical-scroll-proportion="0.13636364" vertical-offset="423" max-vertical-offset="1083" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybiotools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="0" selection-start="1946" selection-end="1946" vertical-scroll-proportion="0.0" vertical-offset="1216" max-vertical-offset="1330" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/walkers/variant_counter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="19" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="817">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/walkers/vcf_walker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="31" selection-start="564" selection-end="564" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1159">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/utils/log_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="599" selection-end="599" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="589">
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/walkers/base_walker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="12" selection-start="1091" selection-end="1091" vertical-scroll-proportion="0.0" vertical-offset="569" max-vertical-offset="1273">
-          <folding>
-            <element signature="e#23#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/selective_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="31" selection-start="5434" selection-end="5434" vertical-scroll-proportion="0.0" vertical-offset="3381" max-vertical-offset="4028">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/walkers/simulation_walker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="45" selection-start="352" selection-end="352" vertical-scroll-proportion="-1.3445513" vertical-offset="1124" max-vertical-offset="1786">
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/walkers/region_simulation_walker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="31" selection-start="3966" selection-end="3966" vertical-scroll-proportion="0.0" vertical-offset="1430" max-vertical-offset="2166">
-          <folding>
-            <element signature="e#23#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/scripts/simulate_sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="8" selection-start="933" selection-end="933" vertical-scroll-proportion="0.6045455" vertical-offset="0" max-vertical-offset="665">
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <watches-manager />
   </component>
 </project>
-
