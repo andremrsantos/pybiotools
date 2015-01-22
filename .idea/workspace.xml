@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba1f9c18-7bba-4df6-8ef8-45b5690ae3c8" name="Default" comment="" />
+    <list default="true" id="ba1f9c18-7bba-4df6-8ef8-45b5690ae3c8" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pybiotools/scripts/tcga_data_script.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="pybiotools.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -28,8 +32,18 @@
       <file leaf-file-name="script.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybiotools/scripts/script.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="159" max-vertical-offset="651">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="651">
               <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tcga_data_script.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pybiotools/scripts/tcga_data_script.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.17073171" vertical-offset="0" max-vertical-offset="492">
+              <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -45,10 +59,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scripts_test.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="scripts_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/scripts_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34146342" vertical-offset="0" max-vertical-offset="777">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="777">
               <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
@@ -64,6 +78,9 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -75,6 +92,8 @@
         <option value="$PROJECT_DIR$/pybiotools/scripts/base_script.py" />
         <option value="$PROJECT_DIR$/pybiotools/scripts/__init__.py" />
         <option value="$PROJECT_DIR$/tests/scripts_test.py" />
+        <option value="$PROJECT_DIR$/pybiotools/scripts/script.py" />
+        <option value="$PROJECT_DIR$/pybiotools/scripts/tcga_data_script.py" />
       </list>
     </option>
   </component>
@@ -87,7 +106,7 @@
     <option name="width" value="1537" />
     <option name="height" value="904" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -466,12 +485,12 @@
       <workItem from="1421846532337" duration="416000" />
       <workItem from="1421846985963" duration="889000" />
       <workItem from="1421847893753" duration="5544000" />
-      <workItem from="1421930115053" duration="1629000" />
+      <workItem from="1421930115053" duration="2548000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8478000" />
+    <option name="totallyTimeSpent" value="9397000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-4" width="1537" height="904" extended-state="6" />
@@ -635,9 +654,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybiotools/scripts/script.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="159" max-vertical-offset="651">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="651">
           <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/scripts_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="777">
+          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -649,13 +678,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/scripts_test.py">
+    <entry file="file://$PROJECT_DIR$/pybiotools/scripts/tcga_data_script.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34146342" vertical-offset="0" max-vertical-offset="777">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.17073171" vertical-offset="0" max-vertical-offset="492">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
