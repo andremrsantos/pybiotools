@@ -23,7 +23,7 @@ class FileIterator(object):
         return self.__finput.readline().rstrip()
 
     def has_next(self):
-        return self.at() <= self.len()
+        return self.at() < self.len()
 
     def read_progress(self):
         return float(self.at())/float(self.len())
