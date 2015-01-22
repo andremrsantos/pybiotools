@@ -1,4 +1,4 @@
-from optparse import OptionParser, Values
+from optparse import OptionParser
 
 
 class Script(object):
@@ -24,3 +24,6 @@ class Script(object):
 
     def _run_script(self):
         raise NotImplementedError()
+
+    def _name(self):
+        return self.__class__.__name__
