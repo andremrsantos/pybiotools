@@ -1,1 +1,2 @@
-from file_iterator import *
+from file_iterator import FileIterator
+from csv_iterator import CSVIterator
