@@ -1,5 +1,5 @@
 from nose.tools import *
-from pybiotools.scripts import Script
+from __main__.__main__.scripts import Script
 
 class ScriptStub(Script):
     def _setup(self):

@@ -7,7 +7,7 @@ config = {
     'description': 'PyBiotools is a package to agregate a collection of tools '
                    'and scripts commonly used on LGHM and Neuro bioinformatics '
                    'laboratories',
-    'author': 'André M. Ribeiro dos Santos',
+    'author': 'Andre M. Ribeiro dos Santos',
     'url': '',
     'download_url': '',
     'author_email': 'andremrsantos@neuro.ufrn.br',

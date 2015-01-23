@@ -1,12 +1,12 @@
-from pybiotools.helpers.loggers import IteratorLogger
-from pybiotools.iterators import FileIterator
+from .helpers import loggers
+from .iterators import FileIterator
 from script import Script
 from re import match
 
 
 class FileScript(Script):
     Iterator = FileIterator
-    Logger = IteratorLogger
+    Logger = loggers.IteratorLogger
     IgnoreRegex = r'^(#|$)'
 
     def _setup(self):

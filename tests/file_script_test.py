@@ -1,6 +1,5 @@
-from nose.tools import *
-from pybiotools.scripts import FileScript
-from pybiotools.helpers import io_helper
+from __main__.__main__.scripts import FileScript
+from __main__.__main__.helpers import io_helper
 
 
 class FileScriptStub(FileScript):

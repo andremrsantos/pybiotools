@@ -1,11 +1,12 @@
+from csv import DictWriter, QUOTE_NONNUMERIC
+
 from pybiotools.helpers.collection_helpers import unique
 from pybiotools.helpers.io_helper import line_number
 from pybiotools.crawlers.cbio_crawler import CBioCrawler
 from pybiotools.iterators import CSVIterator
-
 from file_script import FileScript
 from os import path, getcwd, makedirs
-from csv import DictWriter, QUOTE_NONNUMERIC
+
 
 class TCGADataScript(FileScript):
     Iterator = CSVIterator
